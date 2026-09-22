@@ -1,3 +1,22 @@
-.teto{
-align-items: center;
+.teto {
+    display: flex ;
+    flex-direction: column;
+    gap: 10px;
+
+  align-items: center;            
+}
+
+button{
+      padding: 10px 20px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2s;
+  margin: 15px;
+}
+.gombomk{
+    display: flex;
+    gap: 10px;
 }
