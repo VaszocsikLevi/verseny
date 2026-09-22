@@ -17,7 +17,7 @@ function Kiir() {
         <h2>Ismerj meg minket - válassz egy képet</h2>
         <div id="szinpad">        
             <button data-kep="0" class="bal">
-                <img src="" alt="Norbi"> 
+                <img src="img/norbi.jpg" alt="Norbi"> 
                 <span>Kovács Norbert</span>
             </button>
             <button data-kep="1" class="kozep">
