@@ -1,3 +1,6 @@
-.teto{
-    margin-right: 0 auto;
+.teto {
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+  height: 100vh;          
 }
