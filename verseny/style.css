@@ -103,7 +103,9 @@
   opacity: 0.4;
 }
 body{
-    background-color: rgb(113, 131, 211);
+    background-image: radiar-gradient(rgba(184, 48, 48, 0.979), rgb(168, 73, 73));
+    
+
 }
 li{
   list-style: none;
