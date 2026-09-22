@@ -91,6 +91,7 @@
   flex: 0 0 100%;
   padding: 20px;
   box-sizing: border-box;
+  border: 2px solid rgb(204, 0, 0);
 }
 
 .ures span {
