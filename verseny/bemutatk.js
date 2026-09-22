@@ -5,15 +5,14 @@ const mi = [
   ];  
   let aktivFeladat = null;
 function Kiir() {
-    function Kiir() {
-        if (aktivFeladat === 1) {
-            document.getElementById("torzs").innerHTML = "";
-            aktivFeladat = null;
-            return;
-        }
-        aktivFeladat = 1;
-
+  
+    if (aktivFeladat === 1) {
+        document.getElementById("torzs").innerHTML = "";
+        aktivFeladat = null;
+        return;
     }
+    aktivFeladat = 1;
+
     document.getElementById("torzs").innerHTML=`<header id="intro">
         <div class="intro-belso">
             <h1>Ismerjetek meg minket</h1>
