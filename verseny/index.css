@@ -1,7 +1,8 @@
 .teto {
     display: flex ;
     flex-direction: column;
-  justify-content: center; 
+    gap: 10px;
+
   align-items: center;            
 }
 
@@ -14,4 +15,8 @@ button{
   cursor: pointer;
   transition: 0.2s;
   margin: 15px;
+}
+.gombomk{
+    display: flex;
+    gap: 10px;
 }
