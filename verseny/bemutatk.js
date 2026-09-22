@@ -14,6 +14,11 @@ function Kiir() {
                 <li>Talpra esettek</li>
                 <li>Anyu kedvencei</li>
             </ul>
+            <ul>
+                <li>Székesfehérvári SzC Széchenyi István Műszaki Technikumba járunk</li>
+                <li>Homolya Zoltán a felkészítő tanárunk</li>
+            </ul>
+            
             <img src="" alt="Apritok">
         </div>
     </header>
@@ -26,11 +31,11 @@ function Kiir() {
                 <span>Kovács Norbert</span>
             </button>
             <button data-kep="1" class="kozep">
-                <img src="img/IMG_6042.jpeg" alt="Domi">
+                <img src="img/domi.jpeg" alt="Domi">
                 <span>Hege Domonkos</span>
             </button>
             <button data-kep="2" class="jobb">
-                <img src="img/IMG_3869.jpeg" alt="Levi">
+                <img src="img/vaszo.jpeg" alt="Levi">
                 <span>Vaszócsik Levente</span>
             </button>
             <div id="gyuru"></div>
