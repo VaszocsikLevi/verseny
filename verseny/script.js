@@ -3,17 +3,17 @@ document.querySelector("body").innerHTML=`<header id="intro">
             <h1>Ismerjetek meg minket</h1>
             <p>Bit aprítók</p>
             <ul>
-                <li>kvnwivp</li>
-                <li>kvlw vkwvvwv</li>
-                <li>wkv wpov</li>
-                <li>wp vo vpswvms</li>
+                <li>Okosak</li>
+                <li>Szépek</li>
+                <li>Talpra esettek</li>
+                <li>Anyu kedvencei</li>
             </ul>
         </div>
     </header>
 
     <main>
         <h2>Ismerj meg minket - válassz egy képet</h2>
-        <div id="szinpad">
+        <div id="szinpad">        
             <button data-kep="0" class="bal">
                 <img src="" alt="Norbi"> 
                 <span>Kovács Norbert</span>
