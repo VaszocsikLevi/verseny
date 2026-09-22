@@ -20,3 +20,12 @@ button{
     display: flex;
     gap: 10px;
 }
+
+#ora {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  font-size: 1.5rem;
+  font-variant-numeric: tabular-nums;
+}
