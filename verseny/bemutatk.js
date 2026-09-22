@@ -34,7 +34,7 @@ function Kiir() {
     </header>
 
     <main>
-        <h2>Ismerj meg minket - válassz egy képet</h2>
+        <h2 id="cim">Ismerj meg minket - válassz egy képet</h2>
         <div id="szinpad">        
             <button data-kep="0" class="bal">
                 <img src="img/norbert.jpg" alt="Norbi"> 
@@ -68,6 +68,7 @@ function bemutatkozasInditas() {
     const intro = document.getElementById("intro");
     const gyuru = document.getElementById("gyuru");
     const szoveg = document.getElementById("szoveg");
+    const cim = document.getElementById("cim");
     let aktualis = null;
 
     gombok.forEach(function (gomb) {
@@ -187,6 +188,7 @@ function bemutatkozasInditas() {
             galeria.classList.remove("rejtve");
             hol = 0;
             kepMutat();
+            cim.textContent = "Galéria";
             });
 
             document.getElementById("galeriaVissza").addEventListener("click", function () {
@@ -194,6 +196,7 @@ function bemutatkozasInditas() {
             intro.classList.remove("felcsuszott");
             szinpad.classList.remove("rejtve");
             szoveg.classList.remove("rejtve");
+            cim.textContent = "Ismerj meg minket - válassz egy képet";
             });
 
             document.getElementById("kovetkezo").addEventListener("click", function () {

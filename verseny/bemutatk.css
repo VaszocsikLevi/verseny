@@ -129,7 +129,7 @@ img{
 
 #galeria {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 80px auto 80px;
   justify-content: center;
   align-items: center;
   gap: 24px;
