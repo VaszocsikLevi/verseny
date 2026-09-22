@@ -13,8 +13,6 @@ function Kiir() {
         }
         aktivFeladat = 1;
 
-        document.getElementById("torzs").innerHTML = `...`;
-        bemutatkozasInditas();
     }
     document.getElementById("torzs").innerHTML=`<header id="intro">
         <div class="intro-belso">
