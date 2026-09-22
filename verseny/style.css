@@ -42,9 +42,12 @@
 }
 
 #intro .intro-belso {
+  position: static;
+  left: 50%;
   overflow: hidden;
   padding: 2px solid rgb(22, 21, 66);
   text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 #intro.felcsuszott {
