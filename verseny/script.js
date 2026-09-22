@@ -24,7 +24,7 @@ document.querySelector("body").innerHTML=`<header id="intro">
                 <span>Hege Domonkos</span>
             </button>
             <button data-kep="2" class="jobb">
-                <img src="" alt="Levi">
+                <img src="img/IMG_3869.jpeg" alt="Levi">
                 <span>Vaszócsik Levente</span>
             </button>
             <div id="gyuru"></div>
