@@ -43,14 +43,11 @@
 }
 
 #intro .intro-belso {
-  position: static;
-  left: 50%;
   overflow: hidden;
-  padding: 2px solid rgb(22, 21, 66);
-  font-size: xx-large;
+  font-size: x-large;
   
 }
-#intro .intro-belso .ul{
+#intro .intro-belso ul{
   text-align: left;
 }
 
@@ -101,12 +98,11 @@
   height: 14px;
   margin: 10px 0;
   border-radius: 6px;
-  background: #8f9bff;
+  background: #8d95da;
   opacity: 0.4;
 }
 body{
     background-color: rgb(113, 131, 211);
-    background-blend-mode:difference;
 }
 li{
   list-style: none;
