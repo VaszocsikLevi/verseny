@@ -15,8 +15,7 @@ function Kiir() {
 
     document.getElementById("torzs").innerHTML=`<header id="intro">
         <div class="intro-belso">
-            <h1>Ismerjetek meg minket</h1>
-            <p>Bit aprítók</p>
+            <h1>Bit aprítók</h1>
             <ul>
                 <li>Okosak</li>
                 <li>Szépek</li>
