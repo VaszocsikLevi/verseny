@@ -30,7 +30,7 @@ document.querySelector("body").innerHTML=`<header id="intro">
             <div id="gyuru"></div>
         </div>
         <div id="szoveg"></div>
-        <button class="vissza">Vissza a tetejére</button>
+        
     </main>`
 
 
@@ -99,6 +99,8 @@ gombok.forEach(function (gomb) {
         fill: "forwards"
     }
     );
+
+    document.innerHTML = `<button class="vissza">Vissza a tetejére</button>`;
 
     gombok.forEach(function (g) {
     g.classList.remove("bal", "kozep", "jobb");
