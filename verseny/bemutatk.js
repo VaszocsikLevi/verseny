@@ -1,4 +1,5 @@
-document.querySelector("body").innerHTML=`<header id="intro">
+function Kiir() {
+    document.getElementById("torzs").innerHTML=`<header id="intro">
         <div class="intro-belso">
             <h1>Ismerjetek meg minket</h1>
             <p>Bit aprítók</p>
@@ -32,6 +33,8 @@ document.querySelector("body").innerHTML=`<header id="intro">
         <div id="szoveg"></div>
         
     </main>`
+}
+
 
 
 
