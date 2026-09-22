@@ -8,6 +8,7 @@ document.querySelector("body").innerHTML=`<header id="intro">
                 <li>Talpra esettek</li>
                 <li>Anyu kedvencei</li>
             </ul>
+            <img src="" alt"Apritok">
         </div>
     </header>
 
