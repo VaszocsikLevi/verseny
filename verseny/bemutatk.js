@@ -155,9 +155,13 @@ function bemutatkozasInditas() {
             });
         } 
         const kepek = [
-            { fajl: "img/galeria1.jpg", leiras: "Első kép" },
-            { fajl: "img/galeria2.jpg", leiras: "Második kép" },
-            { fajl: "img/galeria3.jpg", leiras: "Harmadik kép" }
+            { fajl: "img/IMG_7783.JPG", leiras: "Első kép" },
+            { fajl: "img/IMG_7785.JPG", leiras: "Második kép" },
+            { fajl: "img/IMG_7788.JPG", leiras: "Harmadik kép" },
+            { fajl: "img/IMG_7791.JPG", leiras: "Negyedik kép" },
+            { fajl: "img/IMG_7794.JPG", leiras: "Ötödik kép" },
+            { fajl: "img/IMG_7796.JPG", leiras: "Hatodik kép" },
+            { fajl: "img/IMG_7702.JPG", leiras: "Hetedik kép" },
             ];
 
             const galeria = document.getElementById("galeria");
