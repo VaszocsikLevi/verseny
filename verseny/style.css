@@ -84,8 +84,8 @@
   margin: 0 auto;
 }
 body{
-    background-color: rgb(133, 69, 69);
-    background-blend-mode:soft-light;
+    background-color: rgb(18, 60, 248);
+    background-blend-mode:difference;
 }
 li{
   list-style: none;
