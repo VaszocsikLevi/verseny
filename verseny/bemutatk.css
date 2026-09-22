@@ -122,7 +122,6 @@ img{
 }
 
 #galeriaKep {
-  max-width: 70%;
   max-height: 400px;
   vertical-align: middle;
 }
@@ -140,5 +139,3 @@ img{
   justify-self: center;
 }
 
-main { outline: 2px solid red; }
-#galeria { outline: 2px solid lime; }
