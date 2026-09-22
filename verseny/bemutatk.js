@@ -161,7 +161,7 @@ function bemutatkozasInditas() {
             { fajl: "img/IMG_7791.JPG", leiras: "Negyedik kép" },
             { fajl: "img/IMG_7794.JPG", leiras: "Ötödik kép" },
             { fajl: "img/IMG_7796.JPG", leiras: "Hatodik kép" },
-            { fajl: "img/IMG_7702.JPG", leiras: "Hetedik kép" },
+            { fajl: "img/IMG_7802.JPG", leiras: "Hetedik kép" },
             ];
 
             const galeria = document.getElementById("galeria");
