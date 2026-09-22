@@ -29,6 +29,7 @@ function Kiir() {
             </ul>
             
             <img src="" alt="Apritok">
+            <button id="galeriaGomb">Galéria</button>
         </div>
     </header>
 
@@ -50,6 +51,12 @@ function Kiir() {
             <div id="gyuru"></div>
         </div>
         <div id="szoveg"></div>
+        <div id="galeria" class="rejtve">
+            <button id="elozo">◀</button>
+            <img id="galeriaKep" src="" alt="">
+            <button id="kovetkezo">▶</button>
+            <button id="galeriaVissza">Vissza</button>
+        </div>
         
     </main>`
 
@@ -147,6 +154,51 @@ function bemutatkozasInditas() {
                 g.classList.add(kezdoHelyek[k]);
             });
         } 
+        const kepek = [
+            { fajl: "img/galeria1.jpg", leiras: "Első kép" },
+            { fajl: "img/galeria2.jpg", leiras: "Második kép" },
+            { fajl: "img/galeria3.jpg", leiras: "Harmadik kép" }
+            ];
+
+            const galeria = document.getElementById("galeria");
+            const galeriaKep = document.getElementById("galeriaKep");
+            const szinpad = document.getElementById("szinpad");
+            let hol = 0;
+
+            function kepMutat() {
+            galeriaKep.src = kepek[hol].fajl;
+            galeriaKep.alt = kepek[hol].leiras;
+            }
+
+            function lep(mennyit) {
+            hol = (hol + mennyit + kepek.length) % kepek.length;
+            kepMutat();
+            }
+
+            document.getElementById("galeriaGomb").addEventListener("click", function () {
+            elrejt();
+            intro.classList.add("rejtve");
+            szinpad.classList.add("rejtve");
+            szoveg.classList.add("rejtve");
+            galeria.classList.remove("rejtve");
+            hol = 0;
+            kepMutat();
+            });
+
+            document.getElementById("galeriaVissza").addEventListener("click", function () {
+            galeria.classList.add("rejtve");
+            intro.classList.remove("rejtve");
+            szinpad.classList.remove("rejtve");
+            szoveg.classList.remove("rejtve");
+            });
+
+            document.getElementById("kovetkezo").addEventListener("click", function () {
+            lep(1);
+            });
+
+            document.getElementById("elozo").addEventListener("click", function () {
+            lep(-1);
+            });
 
 }
 

@@ -117,3 +117,12 @@ img{
   box-shadow: 0 0 30px #171e64, inset 0 0 20px #6976e9;
 }
 
+.rejtve {
+  display: none;
+}
+
+#galeriaKep {
+  max-width: 70%;
+  max-height: 400px;
+  vertical-align: middle;
+}
