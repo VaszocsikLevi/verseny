@@ -60,7 +60,19 @@ gombok.forEach(function (gomb) {
     const jobb = (i + 1) % 3;
     const bal = (i + 2) % 3;
     const valaki = mi[i];
-    szoveg.innerHTML = `<h3>${valaki.nev}</h3><p>${valaki.szoveg}</p>`;
+    const uresDb = 7;
+    let panelek = "";
+
+    for (let k = 0; k < uresDb; k++) {
+    panelek += `<div class="panel ures"><span></span><span></span><span></span></div>`;
+    }
+
+    panelek += `<div class="panel"><h3>${valaki.nev}</h3><p>${valaki.szoveg}</p></div>`;
+
+    szoveg.innerHTML = `<div class="szalag">${panelek}</div>`;
+
+    const szalag = szoveg.querySelector(".szalag");
+    szalag.style.translate = `-${uresDb * 100}%`;
 
     gombok.forEach(function (g) {
     g.classList.remove("bal", "kozep", "jobb");

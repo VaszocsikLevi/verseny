@@ -83,9 +83,26 @@
 #szoveg {
   max-width: 600px;
   margin: 0 auto;
-  padding: 1.5px solid ;
-  border-radius: 25%;
-  
+  overflow: hidden;
+}
+
+.szalag {
+  display: flex;
+}
+
+.panel {
+  flex: 0 0 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.ures span {
+  display: block;
+  height: 14px;
+  margin: 10px 0;
+  border-radius: 6px;
+  background: #8f9bff;
+  opacity: 0.4;
 }
 body{
     background-color: rgb(113, 131, 211);
