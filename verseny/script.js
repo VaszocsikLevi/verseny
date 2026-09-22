@@ -19,7 +19,7 @@ document.querySelector("body").innerHTML=`<header id="intro">
                 <span>Kovács Norbert</span>
             </button>
             <button data-kep="1" class="kozep">
-                <img src="" alt="Domi">
+                <img src="img/IMG_6042.jpeg" alt="Domi">
                 <span>Hege Domonkos</span>
             </button>
             <button data-kep="2" class="jobb">
