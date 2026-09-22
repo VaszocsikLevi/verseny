@@ -68,7 +68,7 @@
   translate: -50%;
   border-radius: 50%;
   border: 2px solid rgb(255, 0, 0);
-  box-shadow: 0 0 30px #2b3162, inset 0 0 20px #8f9bff;
+  box-shadow: 0 0 30px #850000, inset 0 0 20px #8f9bff;
   opacity: 0;
   scale: 0.9;
   pointer-events: none;
