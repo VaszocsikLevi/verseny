@@ -139,3 +139,7 @@ img{
   grid-column: 1 / -1;
   justify-self: center;
 }
+
+#elozo, #kovetkezo {
+  width: 100%;
+}
