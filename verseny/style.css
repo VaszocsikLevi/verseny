@@ -103,7 +103,7 @@
   opacity: 0.4;
 }
 body{
-    background-image: radiar-gradient(rgba(184, 48, 48, 0.979), rgb(168, 73, 73));
+    background-image: radial-gradient(rgba(184, 48, 48, 0.979), rgb(168, 73, 73));
     
 
 }
