@@ -64,8 +64,8 @@
   height: 90px;
   translate: -50%;
   border-radius: 50%;
-  border: 5px solid rgb(255, 0, 0);
-  box-shadow: 0 0 30px #850000, inset 0 0 20px #da0000;
+  border: 5px solid rgb(30, 32, 161);
+  box-shadow: 0 0 30px #171e64, inset 0 0 20px #6976e9;
   opacity: 0;
   scale: 0.9;
   pointer-events: none;
@@ -91,7 +91,9 @@
   flex: 0 0 100%;
   padding: 20px;
   box-sizing: border-box;
-  border: 2px solid rgb(204, 0, 0);
+  border: 2px solid rgb(30, 32, 161);
+  box-shadow: 0 0 30px #171e64, inset 0 0 20px #6976e9;
+
 }
 
 .ures span {
@@ -103,8 +105,7 @@
   opacity: 0.4;
 }
 body{
-    background-image: radial-gradient(rgba(184, 48, 48, 0.979), rgb(194, 126, 126));
-    
+    background-image: radial-gradient(#7692FF, #ABD2FA);
 
 }
 li{
@@ -112,7 +113,7 @@ li{
 }
 img{
   border-radius: 10px;
-  border: 2px solid rgb(255, 0, 0);
-  box-shadow: 0 0 30px #850000, inset 0 0 20px #8f9bff;
+  border: 2px solid rgb(30, 32, 161);
+  box-shadow: 0 0 30px #171e64, inset 0 0 20px #6976e9;
 }
 
