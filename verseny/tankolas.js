@@ -1,5 +1,3 @@
-let aktivFeladat = null;
-
 function betoltes(){
 
     if (aktivFeladat === 2) {
