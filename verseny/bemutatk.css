@@ -118,11 +118,24 @@ img{
 }
 
 .rejtve {
-  display: none;
+  display: none !important;
 }
 
 #galeriaKep {
   max-width: 70%;
   max-height: 400px;
   vertical-align: middle;
+}
+
+#galeria {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+#galeriaVissza {
+  grid-column: 1 / -1;
+  justify-self: center;
 }

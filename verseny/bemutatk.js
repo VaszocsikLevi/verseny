@@ -181,7 +181,7 @@ function bemutatkozasInditas() {
 
             document.getElementById("galeriaGomb").addEventListener("click", function () {
             elrejt();
-            intro.classList.add("rejtve");
+            intro.classList.add("felcsuszott");
             szinpad.classList.add("rejtve");
             szoveg.classList.add("rejtve");
             galeria.classList.remove("rejtve");
@@ -191,7 +191,7 @@ function bemutatkozasInditas() {
 
             document.getElementById("galeriaVissza").addEventListener("click", function () {
             galeria.classList.add("rejtve");
-            intro.classList.remove("rejtve");
+            intro.classList.remove("felcsuszott");
             szinpad.classList.remove("rejtve");
             szoveg.classList.remove("rejtve");
             });
