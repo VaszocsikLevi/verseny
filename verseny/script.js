@@ -71,7 +71,7 @@ gombok.forEach(function (gomb) {
 
     szoveg.innerHTML = `<div class="szalag">${panelek}</div>`;
 
-    const szalag = szoveg.querySelector(".szalag");
+    //const szalag = szoveg.querySelector(".szalag");
     //szalag.style.translate = `-${uresDb * 100}%`;
 
     gombok.forEach(function (g) {
