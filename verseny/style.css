@@ -111,4 +111,7 @@ body{
 li{
   list-style: none;
 }
+img{
+  border-image: round;
+}
 
