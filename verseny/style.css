@@ -43,6 +43,8 @@
 
 #intro .intro-belso {
   overflow: hidden;
+  padding: 2px solid rgb(22, 21, 66);
+  text-align: center;
 }
 
 #intro.felcsuszott {
