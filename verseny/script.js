@@ -4,7 +4,7 @@ const gyuru = document.getElementById("gyuru");
 const szoveg = document.getElementById("szoveg");
 const mi = [
   { nev: "Kovács Norbert", szoveg: "ajfbaeufaeu" },
-  { nev: "Hege Domonkos", szoveg: "Hege Domonkos vagyok és 5 éve foglalkozom informatikával. Mielőtt elkezdtem a tanulmányaimat a Székesfehérvái SZC Széchenyi iskolában, alap fokozaton már tudtam egyszerű html programokat írni." },
+  { nev: "Hege Domonkos", szoveg: "Hege Domonkos vagyok és 5 éve foglalkozom informatikával. Mielőtt elkezdtem a tanulmányaimat a Székesfehérvái SZC Széchenyi iskolában, alap fokozaton már tudtam egyszerű html programokat írni mert érdekelt az irány." },
   { nev: "Vaszócsik Levente", szoveg: "avj wsjkvsj vsjk vd" }
 ];
 
