@@ -52,73 +52,92 @@ function bemutatkozasInditas() {
     const intro = document.getElementById("intro");
     const gyuru = document.getElementById("gyuru");
     const szoveg = document.getElementById("szoveg");
+    let aktualis = null;
 
     gombok.forEach(function (gomb) {
         gomb.addEventListener("click", function () {
+            const i = Number(gomb.dataset.kep);
+
+            if (i === aktualis) {
+                elrejt();
+                return;
+            }
+            aktualis = i;
+
+            gombok.forEach(function (masik) {
+                masik.classList.remove("kivalasztott");
+                masik.classList.add("halvany");
+            });
       
-          gombok.forEach(function (masik) {
-            masik.classList.remove("kivalasztott");
-            masik.classList.add("halvany");
-          });
-      
-          gomb.classList.remove("halvany");
-          gomb.classList.add("kivalasztott");
-      
-          const i = Number(gomb.dataset.kep);
-          const jobb = (i + 1) % 3;
-          const bal = (i + 2) % 3;
-          const valaki = mi[i];
-          const uresDb = 7;
-          let panelek = "";
-      
-          for (let k = 0; k < uresDb; k++) {
-          panelek += `<div class="panel ures"><span></span><span></span><span></span></div>`;
-          }
-      
-          panelek += `<div class="panel"><h3>${valaki.nev}</h3><p>${valaki.szoveg}</p></div>`;
-      
-          szoveg.innerHTML = `<div class="szalag">${panelek}</div>`;
-      
-          const szalag = szoveg.querySelector(".szalag");
-          const ido = 1500;
-      
-          szalag.animate(
-          [
-              { translate: "0%" },
-              { translate: `-${uresDb * 100}%` }
-          ],
-          {
-              duration: ido,
-              easing: "cubic-bezier(0.15, 0.85, 0.3, 1.08)",
-              fill: "forwards"
-          }
-          );
-      
-          szalag.animate(
-          [
-              { filter: "blur(8px)" },
-              { filter: "blur(0px)" }
-          ],
-          {
-              duration: ido * 0.85,
-              easing: "ease-in",
-              fill: "forwards"
-          }
-          );
-      
-          gombok.forEach(function (g) {
-          g.classList.remove("bal", "kozep", "jobb");
-          });
-      
-          gombok[i].classList.add("kozep");
-          gombok[jobb].classList.add("jobb");
-          gombok[bal].classList.add("bal");
-      
-          console.log("Kép:", gomb.dataset.kep);
-          intro.classList.add("felcsuszott");
-          gyuru.classList.add("lathato");
-        });
+            gomb.classList.remove("halvany");
+            gomb.classList.add("kivalasztott");
+    
+            const jobb = (i + 1) % 3;
+            const bal = (i + 2) % 3;
+            const valaki = mi[i];
+            const uresDb = 7;
+            let panelek = "";
+        
+            for (let k = 0; k < uresDb; k++) {
+            panelek += `<div class="panel ures"><span></span><span></span><span></span></div>`;
+            }
+        
+            panelek += `<div class="panel"><h3>${valaki.nev}</h3><p>${valaki.szoveg}</p></div>`;
+        
+            szoveg.innerHTML = `<div class="szalag">${panelek}</div>`;
+        
+            const szalag = szoveg.querySelector(".szalag");
+            const ido = 1500;
+        
+            szalag.animate(
+            [
+                { translate: "0%" },
+                { translate: `-${uresDb * 100}%` }
+            ],
+            {
+                duration: ido,
+                easing: "cubic-bezier(0.15, 0.85, 0.3, 1.08)",
+                fill: "forwards"
+            }
+            );
+        
+            szalag.animate(
+            [
+                { filter: "blur(8px)" },
+                { filter: "blur(0px)" }
+            ],
+            {
+                duration: ido * 0.85,
+                easing: "ease-in",
+                fill: "forwards"
+            }
+            );
+        
+            gombok.forEach(function (g) {
+            g.classList.remove("bal", "kozep", "jobb");
+            });
+        
+            gombok[i].classList.add("kozep");
+            gombok[jobb].classList.add("jobb");
+            gombok[bal].classList.add("bal");
+        
+            console.log("Kép:", gomb.dataset.kep);
+            intro.classList.add("felcsuszott");
+            gyuru.classList.add("lathato");
+            });
       });
+
+        function elrejt() {
+            aktualis = null;
+            szoveg.innerHTML = "";
+            gyuru.classList.remove("lathato");
+            intro.classList.remove("felcsuszott");
+            const kezdoHelyek = ["bal", "kozep", "jobb"];
+            gombok.forEach(function (g, k) {
+                g.classList.remove("kivalasztott", "halvany", "bal", "kozep", "jobb");
+                g.classList.add(kezdoHelyek[k]);
+            });
+        } 
 
 }
 
