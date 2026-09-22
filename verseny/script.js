@@ -72,7 +72,31 @@ gombok.forEach(function (gomb) {
     szoveg.innerHTML = `<div class="szalag">${panelek}</div>`;
 
     const szalag = szoveg.querySelector(".szalag");
-    szalag.style.translate = `-${uresDb * 100}%`;
+    const ido = 1500;
+
+    szalag.animate(
+    [
+        { translate: "0%" },
+        { translate: `-${uresDb * 100}%` }
+    ],
+    {
+        duration: ido,
+        easing: "cubic-bezier(0.15, 0.85, 0.3, 1.08)",
+        fill: "forwards"
+    }
+    );
+
+    szalag.animate(
+    [
+        { filter: "blur(8px)" },
+        { filter: "blur(0px)" }
+    ],
+    {
+        duration: ido * 0.85,
+        easing: "ease-in",
+        fill: "forwards"
+    }
+    );
 
     gombok.forEach(function (g) {
     g.classList.remove("bal", "kozep", "jobb");
