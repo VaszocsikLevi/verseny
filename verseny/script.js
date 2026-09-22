@@ -4,7 +4,7 @@ const gyuru = document.getElementById("gyuru");
 const szoveg = document.getElementById("szoveg");
 const mi = [
   { nev: "Kovács Norbert", szoveg: "ajfbaeufaeu" },
-  { nev: "Hege Domonkos", szoveg: "bvwoivbewbv" },
+  { nev: "Hege Domonkos", szoveg: "" },
   { nev: "Vaszócsik Levente", szoveg: "avj wsjkvsj vsjk vd" }
 ];
 
