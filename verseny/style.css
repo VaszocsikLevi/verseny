@@ -85,7 +85,7 @@
 }
 body{
     background-color: rgb(133, 69, 69);
-    background-blend-mode: color-burn;
+    background-blend-mode:soft-light;
 }
 li{
   list-style: none;
