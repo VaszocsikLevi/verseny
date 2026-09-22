@@ -80,6 +80,9 @@
   max-width: 600px;
   margin: 0 auto;
 }
+body{
+    background-color: rgb(117, 3, 3);
+}
 li{
   list-style: none;
 }
