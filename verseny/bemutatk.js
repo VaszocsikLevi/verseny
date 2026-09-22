@@ -3,7 +3,19 @@ const mi = [
     { nev: "Hege Domonkos", szoveg: "Hege Domonkos vagyok és 5 éve foglalkozom informatikával. Mielőtt elkezdtem a tanulmányaimat a Székesfehérvái SZC Széchenyi iskolában, alap fokozaton már tudtam egyszerű html programokat írni, mert már akkor érdekelt az irány." },
     { nev: "Vaszócsik Levente", szoveg: "Vaszócsik Levente vagyok és ez lesz az 5. évem, hogy mélyebben foglalkozok a programozással köszönhetően annek, hogy a Székesfehérvári SzC Széchenyi István Műszaki technikumot választottam tanulmányaim folytatására. Szabadidőm túlnyomó részét is programozással töltöm" }
   ];  
+  let aktivFeladat = null;
 function Kiir() {
+    function Kiir() {
+        if (aktivFeladat === 1) {
+            document.getElementById("torzs").innerHTML = "";
+            aktivFeladat = null;
+            return;
+        }
+        aktivFeladat = 1;
+
+        document.getElementById("torzs").innerHTML = `...`;
+        bemutatkozasInditas();
+    }
     document.getElementById("torzs").innerHTML=`<header id="intro">
         <div class="intro-belso">
             <h1>Ismerjetek meg minket</h1>
