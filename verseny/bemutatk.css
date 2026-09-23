@@ -17,6 +17,7 @@
   width: 150px;
   transform-origin: 50% 100%;
   background: none;
+  margin: 0;
   border: 0;
   padding: 0;
   cursor: pointer;
@@ -106,10 +107,7 @@
   background: #6976e9;
   opacity: 0.4;
 }
-body{
-    background-image: radial-gradient(#7692FF, #ABD2FA);
 
-}
 li{
   list-style: none;
 }

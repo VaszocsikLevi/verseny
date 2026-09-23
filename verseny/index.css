@@ -30,6 +30,6 @@ button{
   font-variant-numeric: tabular-nums;
 }
 body{
-  background-image: radial-gradient(#7692FF, #ABD2FA ) !important; 
+  background-image: radial-gradient(#7692FF, #ABD2FA ) ; 
 
 }
