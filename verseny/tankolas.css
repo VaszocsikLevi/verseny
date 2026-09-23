@@ -14,7 +14,8 @@ main section {
   
   #rogzites label,
   #valaszto label {
-    display: inline-block;
+    display: grid;
+    grid-template-rows: 2fr;
     margin: 8px 12px 4px 0;
   }
   
