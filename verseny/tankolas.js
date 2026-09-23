@@ -9,6 +9,7 @@ function betoltes() {
     }
     aktivFeladat = 2;
 
+    //2.feladat betöltése
     document.getElementById("torzs").innerHTML = `    <main>
         <h2>Tankolás nyilvántartó</h2>
 
