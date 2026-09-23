@@ -74,3 +74,29 @@ main section {
     background-image: radial-gradient(#7692FF, #ABD2FA);
 
 }
+
+#gombsor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  
+  #szuroMezok label {
+    margin-right: 6px;
+  }
+  
+  .nezetGomb {
+    font: inherit;
+    cursor: pointer;
+    background: #fff;
+    color: rgb(30, 32, 161);
+    border: 2px solid rgb(30, 32, 161);
+    border-radius: 6px;
+    padding: 8px 16px;
+  }
+  
+  .nezetGomb.aktiv {
+    background: rgb(30, 32, 161);
+    color: #fff;
+  }
