@@ -14,8 +14,7 @@ main section {
   
   #rogzites label,
   #valaszto label {
-    display: flex 2fr;
-    flex-direction: column;
+    display: inline-block;
     margin: 8px 12px 4px 0;
   }
   
