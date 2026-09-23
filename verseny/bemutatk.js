@@ -27,7 +27,6 @@ function Kiir() {
                 <li>Homolya Zoltán a felkészítő tanárunk</li>
             </ul>
             
-            <img src="" alt="Apritok">
             <button id="galeriaGomb">Galéria</button>
         </div>
     </header>
