@@ -70,3 +70,7 @@ main section {
   td.nincs {
     color: #667;
   }
+  body{
+    background-image: radial-gradient(#7692FF, #ABD2FA);
+
+}
