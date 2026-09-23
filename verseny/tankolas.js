@@ -87,5 +87,31 @@ function betoltes(){
         </section>
     </main>`;
 
+    const nezetGombok = document.querySelectorAll(".nezetGomb");
+    const szuroMezok = document.getElementById("szuroMezok");
+  
+    function nezetValt(nev) {
+      document.querySelectorAll(".nezet").forEach(function (sz) {
+        sz.classList.add("rejtve");
+      });
+  
+      const nagybetus = nev.charAt(0).toUpperCase() + nev.slice(1);
+      document.getElementById("nezet" + nagybetus).classList.remove("rejtve");
+  
+      nezetGombok.forEach(function (g) {
+        g.classList.toggle("aktiv", g.dataset.nezet === nev);
+      });
+  
+      szuroMezok.style.display = nev === "szurt" ? "block" : "none";
+    }
+  
+    nezetGombok.forEach(function (gomb) {
+      gomb.addEventListener("click", function () {
+        nezetValt(gomb.dataset.nezet);
+      });
+    });
+  
+    nezetValt("osszes");
+
     tankolasInditas();
 }
