@@ -18,13 +18,13 @@ function betoltes(){
             <input type="date" id="ujDatum">
 
             <label for="ujLiter">Mennyiség (liter)</label>
-            <input type="number" id="ujLiter" step="0.01" min="0">
+            <input type="number" id="ujLiter" step="0.01" min="0" placeholder=50><br>
 
             <label for="ujOsszeg">Fizetett összeg (Ft)</label>
-            <input type="number" id="ujOsszeg" step="1" min="0">
+            <input type="number" id="ujOsszeg" step="1" min="0" placeholder=20000>
 
             <label for="ujKm">Kilométeróra (km)</label>
-            <input type="number" id="ujKm" step="1" min="0">
+            <input type="number" id="ujKm" step="1" min="0" placeholder=150000>
 
             <button id="hozzaad">Hozzáadás</button>
             <p id="urlapHiba"></p>

@@ -13,6 +13,7 @@ function Kiir() {
     }
     aktivFeladat = 1;
 
+    //1.feladat betöltése az indexbe
     document.getElementById("torzs").innerHTML=`<header id="intro">
         <div class="intro-belso">
             <h1>Bit aprítók</h1>
@@ -61,6 +62,7 @@ function Kiir() {
     bemutatkozasInditas();
 }
 
+//versenyzők bemutatása
 function bemutatkozasInditas() {
     const gombok = document.querySelectorAll("#szinpad button");
     const intro = document.getElementById("intro");
@@ -142,6 +144,7 @@ function bemutatkozasInditas() {
             });
       });
 
+        //visszalépés a bemutatásból
         function elrejt() {
             aktualis = null;
             szoveg.innerHTML = "";
@@ -153,6 +156,8 @@ function bemutatkozasInditas() {
                 g.classList.add(kezdoHelyek[k]);
             });
         } 
+        
+        //Galéria
         const kepek = [
             { fajl: "img/IMG_7783.JPG", leiras: "Első kép" },
             { fajl: "img/IMG_7785.JPG", leiras: "Második kép" },
