@@ -18,9 +18,6 @@ function Kiir() {
         <div class="intro-belso">
             <h1>Bit aprítók</h1>
             <ul>
-                <li>Okosak</li>
-                <li>Szépek</li>
-                <li>Talpra esettek</li>
                 <li>Anyu kedvencei</li>
             </ul>
             <ul>
@@ -156,7 +153,7 @@ function bemutatkozasInditas() {
                 g.classList.add(kezdoHelyek[k]);
             });
         } 
-        
+
         //Galéria
         const kepek = [
             { fajl: "img/IMG_7783.JPG", leiras: "Első kép" },
