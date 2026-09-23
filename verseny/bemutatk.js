@@ -19,8 +19,6 @@ function Kiir() {
             <h1>Bit aprítók</h1>
             <ul>
                 <li>Anyu kedvencei</li>
-            </ul>
-            <ul>
                 <li>Székesfehérvári SzC Széchenyi István Műszaki Technikumba járunk</li>
                 <li>Homolya Zoltán a felkészítő tanárunk</li>
             </ul>

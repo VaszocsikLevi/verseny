@@ -102,9 +102,9 @@ function tankolasInditas() {
     const hiba = document.getElementById("urlapHiba");
 
 
-    //Számítás
-    // Dátum szerint rendez, majd minden tankoláshoz kiszámolja
-    // a megtett km-t és a fogyasztást az előző tankolásból.
+    /*Számítás
+     Dátum szerint rendezés és a tankolásokhoz kiszámolja
+     a megtett km-t és a fogyasztást az előző tankolásból.*/
     function szamolt() {
         const lista = [...tankolasok];
         lista.sort(function (a, b) {

@@ -13,13 +13,14 @@ main section {
   }
   
   #rogzites label,
-  #szures label {
-    display: inline-block;
+  #valaszto label {
+    display: flex;
+    flex-direction: column;
     margin: 8px 12px 4px 0;
   }
   
   #rogzites input,
-  #szures input {
+  #valaszto input {
     font: inherit;
     padding: 6px 8px;
     margin-right: 12px;
@@ -29,7 +30,7 @@ main section {
   }
   
   #rogzites button,
-  #szures button {
+  #valaszto button {
     font: inherit;
     cursor: pointer;
     background: rgb(30, 32, 161);
@@ -70,10 +71,6 @@ main section {
   td.nincs {
     color: #667;
   }
-  body{
-    background-image: radial-gradient(#7692FF, #ABD2FA);
-
-}
 
 #gombsor {
     display: flex;
