@@ -1,0 +1,72 @@
+main section {
+    max-width: 900px;
+    margin: 0 auto 20px;
+    background: rgba(255, 255, 255, 0.55);
+    border: 2px solid rgb(30, 32, 161);
+    border-radius: 10px;
+    padding: 16px 20px 20px;
+    box-sizing: border-box;
+  }
+  
+  main section h3 {
+    margin-top: 0;
+  }
+  
+  #rogzites label,
+  #szures label {
+    display: inline-block;
+    margin: 8px 12px 4px 0;
+  }
+  
+  #rogzites input,
+  #szures input {
+    font: inherit;
+    padding: 6px 8px;
+    margin-right: 12px;
+    border: 1px solid rgb(30, 32, 161);
+    border-radius: 6px;
+    background: #fff;
+  }
+  
+  #rogzites button,
+  #szures button {
+    font: inherit;
+    cursor: pointer;
+    background: rgb(30, 32, 161);
+    color: #fff;
+    border: 0;
+    border-radius: 6px;
+    padding: 8px 18px;
+    margin-top: 8px;
+  }
+  
+  #urlapHiba {
+    color: #8b0000;
+    min-height: 1.4em;
+    margin: 8px 0 0;
+  }
+  
+  main table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  main th,
+  main td {
+    padding: 7px 8px;
+    text-align: right;
+    border-bottom: 1px solid #99a;
+  }
+  
+  main th:first-child,
+  main td:first-child {
+    text-align: left;
+  }
+  
+  main th {
+    border-bottom: 2px solid rgb(30, 32, 161);
+  }
+  
+  td.nincs {
+    color: #667;
+  }
