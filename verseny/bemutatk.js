@@ -46,6 +46,7 @@ function Kiir() {
             </button>
             <div id="gyuru"></div>
         </div>
+
         <div id="szoveg"></div>
         <div id="galeria" class="rejtve">
             <button id="elozo">◀</button>
