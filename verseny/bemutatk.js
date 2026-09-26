@@ -137,6 +137,7 @@ function bemutatkozasInditas() {
             console.log("Kép:", gomb.dataset.kep);
             intro.classList.add("felcsuszott");
             gyuru.classList.add("lathato");
+            cim.innerText = "Kattints a képre a visszalépéshez";
             });
       });
 
@@ -151,6 +152,7 @@ function bemutatkozasInditas() {
                 g.classList.remove("kivalasztott", "halvany", "bal", "kozep", "jobb");
                 g.classList.add(kezdoHelyek[k]);
             });
+            cim.innerText = "Ismerj meg minket - válassz egy képet";   
         } 
 
         //Galéria
