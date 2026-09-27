@@ -1,0 +1,15 @@
+#palya{
+    display: grid;
+    grid-template-columns: repeat(15, 32px);
+    gap: 2px;
+}
+
+.mezo{
+    background-color: rgb(63, 161, 63);
+    display: grid;
+    place-items: center;
+}
+
+.jatekos {
+  background: gold;
+}
