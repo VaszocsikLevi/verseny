@@ -10,7 +10,7 @@ let jatekos = "🕺🏻"
 
 //játéktér
 const jatekter = document.getElementById("jatekter")
-let ujszam = 1;
+
 
 //tábla létrehozása
 for (let i = 0; i < nsor; i++) {
@@ -33,7 +33,7 @@ for (let i = 0; i < nsor; i++) {
             matrix[i][j] = " "
             ujCella.textContent = " "
         }
-        ujszam++
+
     }
 }
 
