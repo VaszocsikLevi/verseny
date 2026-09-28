@@ -13,3 +13,15 @@
 .jatekos {
   background: gold;
 }
+
+body{
+    display: grid;
+    place-items: center;
+}
+
+.gyumik{
+    display: inline;
+}
+.tabla{
+    display: ;
+}
