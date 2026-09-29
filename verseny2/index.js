@@ -1,6 +1,7 @@
 const Meret = 15;
 const Gyumolcsok = ["alma", "korte", "szolo"]
 const Jelek = { alma: "🍎", korte: "🍐", szolo: "🍇" };
+const Energiak = { alma: 4, korte: 6, szolo: 5 };
 let palya ;
 let jatekosSor = null;
 let jatekosOszlop = null;
@@ -77,7 +78,7 @@ function oldalsavKirajzol() {
     for(const fajta of Gyumolcsok){
         oldalSav += `<p class="gyumik">${Jelek[fajta]} ${taska[fajta]}</p>`;
     }
-    oldalSav += `<p><button>Gyümölcsevés</button></p>`
+    oldalSav += `<p><button id="moBtn">Gyümölcsevés</button></p>`
     document.getElementById("oldalsav").innerHTML = oldalSav;
 }
 
@@ -102,7 +103,7 @@ function kattintas(sor, oszlop) {
     else{
         const tavolsag = Math.abs(sor - jatekosSor) + Math.abs(oszlop - jatekosOszlop);
         if (tavolsag > energia) {
-            alert("Elfogyott az energiád")
+            energiaModalNyit(tavolsag);
             return;
         }
         else{
@@ -115,6 +116,64 @@ function kattintas(sor, oszlop) {
         }
     }
 };
+
+function evesModalNyit() {
+    if (vege) return;
+
+    let gombok = "";
+    for (const fajta of Gyumolcsok) {   
+        const db = taska[fajta];
+        const tiltas = db === 0 ? "disabled" : "";
+        gombok += `<button class="evesGomb" data-fajta="${fajta}" ${tiltas}>${Jelek[fajta]} ${db} db (+${Energiak[fajta]} energia)</button>`;
+    }
+
+    document.getElementById("evesGombok").innerHTML = gombok;
+    document.getElementById("evesModal").showModal();
+}
+
+function eszik(fajta) {
+    if (taska[fajta] === 0) return;
+
+    taska[fajta]--;
+    energia += Energiak[fajta];
+
+    document.getElementById("evesModal").close();
+    kirajzol();
+}
+
+document.getElementById("oldalsav").addEventListener("click", function (event) {
+    if (event.target.id === "moBtn") {
+        evesModalNyit();
+    }
+});
+
+document.getElementById("evesGombok").addEventListener("click", function (event) {
+    const gomb = event.target.closest(".evesGomb");
+    if (!gomb) return;
+    eszik(gomb.dataset.fajta);
+});
+
+document.getElementById("evesMegse").addEventListener("click", function () {
+    document.getElementById("evesModal").close();
+});
+
+function energiaModalNyit(tavolsag) {
+    document.getElementById("energiaUzenet").textContent =
+        `Ehhez a lépéshez ${tavolsag} energia kell, neked ${energia} van.`;
+    document.getElementById("energiaModal").showModal();
+}
+
+document.getElementById("energiaEszem").addEventListener("click", function () {
+    document.getElementById("energiaModal").close();
+    evesModalNyit();
+});
+
+document.getElementById("energiaVege").addEventListener("click", function () {
+    vege = true;
+    document.getElementById("energiaModal").close();
+    kirajzol();
+});
+
 
 //játék indítása
 function ujJatek() {
