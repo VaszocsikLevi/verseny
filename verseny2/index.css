@@ -1,27 +1,24 @@
-#palya{
+#palya {
     display: grid;
     grid-template-columns: repeat(15, 32px);
     gap: 2px;
 }
 
-.mezo{
+.mezo {
     background-color: rgb(63, 161, 63);
     display: grid;
     place-items: center;
 }
 
 .jatekos {
-  background: gold;
+    background: gold;
 }
 
-body{
+body {
     display: grid;
     place-items: center;
 }
 
-.gyumik{
+.gyumik {
     display: inline;
-}
-.tabla{
-    display: ;
 }
