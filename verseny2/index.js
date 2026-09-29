@@ -75,11 +75,24 @@ function kirajzol() {
 
 //pontszámítás
 function pontszamSzamolas() {
-    let pontszam = 0;
-    for (const fajta of Gyumolcsok) {
-        pontszam += taska[fajta] * Energiak[fajta];
+    const alma = taska["alma"];
+    const korte = taska["korte"];
+    const szolo = taska["szolo"];
+
+    //alma 2pont
+    let almaPont = alma * 2;
+    //Szőlő 3pont
+    let szoloPont = szolo * 3;
+    //Körte pontjai(1+2+3.....)
+    let kortePont = 0;
+    for (let i = 1; i <= korte; i++) {
+        kortePont += i;
     }
-    return pontszam;
+    //alma-szolo bonusz
+    let parok = Math.min(alma, szolo);
+    let parokBonusz = parok * 2
+
+    return almaPont + szoloPont + kortePont + parokBonusz;
 }
 
 
