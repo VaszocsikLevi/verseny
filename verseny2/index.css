@@ -8,6 +8,10 @@
     background-color: rgb(63, 161, 63);
     display: grid;
     place-items: center;
+
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
 }
 
 .jatekos {
