@@ -4,6 +4,7 @@ const Jelek = { alma: "🍎", korte: "🍐", szolo: "🍇" };
 const Energiak = { alma: 4, korte: 6, szolo: 5 };
 const kezdoEnergia = 40;
 let palya;
+let palyaGyumolcs = 0;
 let jatekosSor = null;
 let jatekosOszlop = null;
 let energia = kezdoEnergia;
@@ -37,7 +38,6 @@ function palyaLetrehozas() {
 
 //feltöltjük gyümölccsel random mezőket
 function gyumolcsFeltoltes(palya) {
-    let palyaGyumolcs = 0;
     while (palyaGyumolcs < Meret * Meret * 0.2) {
         let mezoSor = Math.floor(Math.random() * Meret); // a math.floor 0-1 közötti számot generál
         let mezoOszlop = Math.floor(Math.random() * Meret);
@@ -134,11 +134,10 @@ function kattintas(sor, oszlop) {
     }  // csak gyümölcsre lehet lépni
 
     if (jatekosSor === null) {
-        jatekosSor = sor;
-        jatekosOszlop = oszlop;
-        taska[mezoErteke]++;
-        palya[sor][oszlop] = null;
-        kirajzol();
+    jatekosSor = sor;
+    jatekosOszlop = oszlop;
+    gyumolcsFelszedes(sor, oszlop, mezoErteke);
+    kirajzol();
     }
     else {
         const tavolsag = Math.abs(sor - jatekosSor) + Math.abs(oszlop - jatekosOszlop);
@@ -150,12 +149,22 @@ function kattintas(sor, oszlop) {
             energia -= tavolsag;
             jatekosSor = sor;
             jatekosOszlop = oszlop;
-            palya[sor][oszlop] = null;
-            taska[mezoErteke]++;
+            gyumolcsFelszedes(sor, oszlop, mezoErteke);
             kirajzol();
         }
     }
 };
+
+//gyümölcsfelszedés
+function gyumolcsFelszedes(sor, oszlop, fajta) {
+    taska[fajta]++;
+    palya[sor][oszlop] = null;
+    palyaGyumolcs--;
+    if (palyaGyumolcs === 0) {
+        vege = true;
+    }
+}
+
 
 function evesModalNyit() {
     if (vege) return;
@@ -187,7 +196,7 @@ document.getElementById("oldalsav").addEventListener("click", function (event) {
     }else if (event.target.id === "vegegomb") {
         vege = true;
         kirajzol();
-    } else if (event.target.id === "ujjatek") {
+    }else if (event.target.id === "ujjatek") {
     ujJatek();
     }
 });
@@ -229,6 +238,7 @@ function ujJatek() {
     energia = kezdoEnergia;
     taska = { alma: 0, korte: 0, szolo: 0 };
     vege = false;
+    palyaGyumolcs =0;
 
     palya = palyaLetrehozas();
     gyumolcsFeltoltes(palya);
