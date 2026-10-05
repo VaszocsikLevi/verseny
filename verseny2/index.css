@@ -2,6 +2,17 @@
     display: grid;
     grid-template-columns: repeat(15, 32px);
     gap: 2px;
+    border: 2px solid black;
+    background-color: black;
+}
+
+.adatok{
+    border: 2px solid black;
+    background-color: bisque;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+
 }
 
 .mezo {
@@ -21,6 +32,8 @@
 body {
     display: grid;
     place-items: center;
+    background-image: url("./images/images.jpg");
+    background-size: cover;
 }
 
 .gyumik {

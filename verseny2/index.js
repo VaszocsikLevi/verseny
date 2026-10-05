@@ -2,10 +2,11 @@ const Meret = 15;
 const Gyumolcsok = ["alma", "korte", "szolo"]
 const Jelek = { alma: "🍎", korte: "🍐", szolo: "🍇" };
 const Energiak = { alma: 4, korte: 6, szolo: 5 };
+const kezdoEnergia = 40;
 let palya;
 let jatekosSor = null;
 let jatekosOszlop = null;
-let energia = 40;
+let energia = kezdoEnergia;
 let taska = { alma: 0, korte: 0, szolo: 0 };
 let vege = false;
 
@@ -114,7 +115,8 @@ function oldalsavKirajzol() {
 
     //pontszám megjelenítése a játék végeztével
     if (vege) {
-        oldalSav += `<h2>Játék vége! Pontszámod: ${pontszamSzamolas()}</h2>`;
+        oldalSav += `<h2>Játék vége! Pontszámod: ${pontszamSzamolas()}</h2>
+        <button id="ujjatek">Új játék</button>`
     }
 
     document.getElementById("oldalsav").innerHTML = oldalSav;
@@ -182,11 +184,15 @@ function eszik(fajta) {
 document.getElementById("oldalsav").addEventListener("click", function (event) {
     if (event.target.id === "mogomb") {
         evesModalNyit();
-    } else if (event.target.id === "vegegomb") {
+    }else if (event.target.id === "vegegomb") {
         vege = true;
         kirajzol();
+    } else if (event.target.id === "ujjatek") {
+    ujJatek();
     }
 });
+
+
 
 document.getElementById("evesGombok").addEventListener("click", function (event) {
     const gomb = event.target.closest(".evesGomb");
@@ -218,6 +224,12 @@ document.getElementById("energiaVege").addEventListener("click", function () {
 
 //játék indítása
 function ujJatek() {
+    jatekosSor = null;
+    jatekosOszlop = null;
+    energia = kezdoEnergia;
+    taska = { alma: 0, korte: 0, szolo: 0 };
+    vege = false;
+
     palya = palyaLetrehozas();
     gyumolcsFeltoltes(palya);
     kirajzol();
