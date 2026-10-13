@@ -1,11 +1,6 @@
-// ============================================================
-// pakli.js – pakli elkészítése, keverés, húzás
-// ============================================================
 
-// Egy lap egy sima objektum, pl.:
-// { szin: "Piros", rajzSzin: "#c0392b", ertek: "Ász", erosseg: 8, pont: 0 }
 function paklitKeszit() {
-    let pakli = [];
+    const pakli = [];
     for (let i = 0; i < SZINEK.length; i++) {
         for (let j = 0; j < ERTEKEK.length; j++) {
             pakli.push({
@@ -23,8 +18,8 @@ function paklitKeszit() {
 // Keverés (Fisher–Yates) – magyarázat: MAGYARAZAT.md 4. pont
 function kever(pakli) {
     for (let i = pakli.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));   // véletlen hely 0..i között
-        let csere = pakli[i];
+        const j = Math.floor(Math.random() * (i + 1));   // véletlen hely 0..i között
+        const csere = pakli[i];
         pakli[i] = pakli[j];
         pakli[j] = csere;
     }

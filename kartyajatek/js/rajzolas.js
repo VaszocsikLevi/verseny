@@ -10,8 +10,8 @@ function rajzolasIndit() {
 // Hányadik pixelnél kezdődik a kézben az index-edik lap?
 // A lapsor középre van igazítva. Az esemenyek.js is ezt használja!
 function lapX(index, darab) {
-    let teljesSzelesseg = darab * LAP_SZELES + (darab - 1) * LAP_KOZ;
-    let kezdoX = (VASZON_SZELES - teljesSzelesseg) / 2;
+    const teljesSzelesseg = darab * LAP_SZELES + (darab - 1) * LAP_KOZ;
+    const kezdoX = (VASZON_SZELES - teljesSzelesseg) / 2;
     return kezdoX + index * (LAP_SZELES + LAP_KOZ);
 }
 

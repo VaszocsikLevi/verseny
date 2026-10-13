@@ -161,8 +161,8 @@ function huzas() {
 // Győztes kihirdetése
 function jatekVege() {
     fazis = "vege";
-    var jatekosPont = pontokOsszege(jatekosVitte);
-    var gepPont = pontokOsszege(gepVitte);
+    const jatekosPont = pontokOsszege(jatekosVitte);
+    const gepPont = pontokOsszege(gepVitte);
 
     if (jatekosPont > gepPont) {
         uzenet = "Nyertél! " + jatekosPont + " : " + gepPont;
@@ -175,7 +175,7 @@ function jatekVege() {
 
 // Kivesz egy lapot egy kézből
 function kivesz(kez, lap) {
-    var hely = kez.indexOf(lap);
+    const hely = kez.indexOf(lap);
     if (hely !== -1) {
         kez.splice(hely, 1);
     }
