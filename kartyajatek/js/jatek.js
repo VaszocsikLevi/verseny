@@ -1,43 +1,29 @@
-// ============================================================
-// jatek.js – a játék menete
-// Ez tárolja, hol tart a játék, és ez dönti el, ki jön.
-// Magyarázat: MAGYARAZAT.md 2. és 3. pont
-// ============================================================
+let pakli = [];
+let jatekosKeze = [];
+let gepKeze = [];
+let jatekosVitte = [];     
+let gepVitte = [];
+let hivo = "";             
+let hivottLap = null;      
+let raadottLap = null;     
+let fazis = "";            
+let uzenet = "";          
+let idozito = null;       
 
-// ---- A játék állapota (globális változók) ----
-var pakli = [];
-var jatekosKeze = [];
-var gepKeze = [];
-var jatekosVitte = [];     // a játékos által elvitt lapok
-var gepVitte = [];
-var hivo = "";             // "jatekos" vagy "gep"
-var hivottLap = null;      // ami az asztalon van bal oldalt
-var raadottLap = null;     // ami rá lett téve
-var fazis = "";            // hol tart a kör, lásd lent
-var uzenet = "";           // a vásznon megjelenő szöveg
-var idozito = null;        // a futó setTimeout azonosítója
-
-// A lehetséges fázisok:
-//   "jatekos_hiv"    – a játékos választ hívó lapot
-//   "gep_hiv"        – a gép gondolkodik, mit hívjon
-//   "jatekos_ratesz" – a gép hívott, a játékos tesz rá
-//   "gep_ratesz"     – a játékos hívott, a gép gondolkodik
-//   "kor_vege"       – rövid szünet, látszik a két lap
-//   "vege"           – vége a játéknak
 
 function ujJatek() {
-    clearTimeout(idozito);   // ha az előző játékból még várt valami, töröljük
+    clearTimeout(idozito);   
 
     pakli = paklitKeszit();
-    kever(pakli);            // (c)
+    kever(pakli);            
 
     jatekosKeze = [];
     gepKeze = [];
     jatekosVitte = [];
     gepVitte = [];
 
-    // (c) 4-4 lap felváltva
-    for (var i = 0; i < KEZDO_LAPOK; i++) {
+   
+    for (let i = 0; i < KEZDO_LAPOK; i++) {
         jatekosKeze.push(huz(pakli));
         gepKeze.push(huz(pakli));
     }
@@ -56,7 +42,6 @@ function korIndul() {
     hivottLap = null;
     raadottLap = null;
 
-    // Ha mindkét kéz üres, nincs több kör
     if (jatekosKeze.length === 0 && gepKeze.length === 0) {
         jatekVege();
         return;
@@ -73,7 +58,7 @@ function korIndul() {
 }
 
 function gepHiv() {
-    var lap = gepHivoLapja(gepKeze);
+    let lap = gepHivoLapja(gepKeze);
     kivesz(gepKeze, lap);
     hivottLap = lap;
     fazis = "jatekos_ratesz";
@@ -87,7 +72,7 @@ function gepHiv() {
 
 // Az esemenyek.js hívja meg, ha a játékos a saját lapjára kattint
 function jatekosKattintott(index) {
-    var lap = jatekosKeze[index];
+    let lap = jatekosKeze[index];
 
     if (fazis === "jatekos_hiv") {
         kivesz(jatekosKeze, lap);
@@ -97,7 +82,7 @@ function jatekosKattintott(index) {
         idozito = setTimeout(gepRatesz, GEP_GONDOLKODIK);
     }
     else if (fazis === "jatekos_ratesz") {
-        // (f) ha tud ütni, nem tehet le mást
+        
         if (!lerakhatoE(lap)) {
             uzenet = "Ezt nem teheted le – ütnöd kell!";
             return;
@@ -106,11 +91,10 @@ function jatekosKattintott(index) {
         raadottLap = lap;
         korKiertekel();
     }
-    // minden más fázisban a kattintás nem csinál semmit
+
 }
 
 // Leteheti-e most a játékos ezt a lapot?
-// A rajzolás is ezt használja a sárga kiemeléshez.
 function lerakhatoE(lap) {
     if (fazis === "jatekos_hiv") {
         return true;
@@ -122,7 +106,7 @@ function lerakhatoE(lap) {
 }
 
 function gepRatesz() {
-    var lap = gepRaadottLapja(gepKeze, hivottLap);
+    let lap = gepRaadottLapja(gepKeze, hivottLap);
     kivesz(gepKeze, lap);
     raadottLap = lap;
     korKiertekel();
@@ -130,7 +114,7 @@ function gepRatesz() {
 
 // Ki vitte a kört?
 function korKiertekel() {
-    var nyertes;
+    let nyertes;
     if (utiE(hivottLap, raadottLap)) {
         // ütött → a NEM hívó viszi
         if (hivo === "jatekos") {
@@ -150,17 +134,17 @@ function korKiertekel() {
         uzenet = "A gép vitte a kört.";
     }
 
-    hivo = nyertes;          // aki vitte, az hív a következő körben
+    hivo = nyertes;          
     fazis = "kor_vege";
 
-    // Kis szünet, hogy látszódjon a két lap, utána húzás és új kör
+    
     idozito = setTimeout(function () {
         huzas();
         korIndul();
     }, KOR_SZUNET);
 }
 
-// (g) mindketten húznak, ha van még lap. Aki vitte, az húz először.
+// Mindketten húznak, ha van még lap. Aki vitte, az húz először.
 function huzas() {
     if (pakli.length === 0) {
         return;
@@ -174,7 +158,7 @@ function huzas() {
     }
 }
 
-// (j) győztes kihirdetése
+// Győztes kihirdetése
 function jatekVege() {
     fazis = "vege";
     var jatekosPont = pontokOsszege(jatekosVitte);

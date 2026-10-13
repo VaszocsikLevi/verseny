@@ -18,8 +18,8 @@ function utiE(hivottLap, raadottLap) {
 
 // A kézből azok a lapok, amelyek ütik a hívott lapot
 function utoLapok(kez, hivottLap) {
-    var eredmeny = [];
-    for (var i = 0; i < kez.length; i++) {
+    let eredmeny = [];
+    for (let i = 0; i < kez.length; i++) {
         if (utiE(hivottLap, kez[i])) {
             eredmeny.push(kez[i]);
         }
@@ -31,7 +31,7 @@ function utoLapok(kez, hivottLap) {
 // Ha van ütő lapja, CSAK azok közül választhat.
 // Ha nincs, bármelyiket leteheti.
 function rakhatoLapok(kez, hivottLap) {
-    var uto = utoLapok(kez, hivottLap);
+    let uto = utoLapok(kez, hivottLap);
     if (uto.length > 0) {
         return uto;
     }
@@ -40,8 +40,8 @@ function rakhatoLapok(kez, hivottLap) {
 
 // Lapok pontjainak összege (feladat h pont)
 function pontokOsszege(lapok) {
-    var osszeg = 0;
-    for (var i = 0; i < lapok.length; i++) {
+    let osszeg = 0;
+    for (let i = 0; i < lapok.length; i++) {
         osszeg += lapok[i].pont;
     }
     return osszeg;

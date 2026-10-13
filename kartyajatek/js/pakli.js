@@ -5,9 +5,9 @@
 // Egy lap egy sima objektum, pl.:
 // { szin: "Piros", rajzSzin: "#c0392b", ertek: "Ász", erosseg: 8, pont: 0 }
 function paklitKeszit() {
-    var pakli = [];
-    for (var i = 0; i < SZINEK.length; i++) {
-        for (var j = 0; j < ERTEKEK.length; j++) {
+    let pakli = [];
+    for (let i = 0; i < SZINEK.length; i++) {
+        for (let j = 0; j < ERTEKEK.length; j++) {
             pakli.push({
                 szin: SZINEK[i].nev,
                 rajzSzin: SZINEK[i].rajzSzin,
@@ -22,9 +22,9 @@ function paklitKeszit() {
 
 // Keverés (Fisher–Yates) – magyarázat: MAGYARAZAT.md 4. pont
 function kever(pakli) {
-    for (var i = pakli.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));   // véletlen hely 0..i között
-        var csere = pakli[i];
+    for (let i = pakli.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));   // véletlen hely 0..i között
+        let csere = pakli[i];
         pakli[i] = pakli[j];
         pakli[j] = csere;
     }

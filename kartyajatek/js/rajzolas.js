@@ -1,10 +1,5 @@
-// ============================================================
-// rajzolas.js – minden, ami a vászonra kerül.
-// Csak OLVASSA a játék változóit, nem módosítja őket.
-// ============================================================
-
-var vaszon;
-var ctx;
+let vaszon;
+let ctx;
 
 function rajzolasIndit() {
     vaszon = document.getElementById("jatekter");
@@ -15,8 +10,8 @@ function rajzolasIndit() {
 // Hányadik pixelnél kezdődik a kézben az index-edik lap?
 // A lapsor középre van igazítva. Az esemenyek.js is ezt használja!
 function lapX(index, darab) {
-    var teljesSzelesseg = darab * LAP_SZELES + (darab - 1) * LAP_KOZ;
-    var kezdoX = (VASZON_SZELES - teljesSzelesseg) / 2;
+    let teljesSzelesseg = darab * LAP_SZELES + (darab - 1) * LAP_KOZ;
+    let kezdoX = (VASZON_SZELES - teljesSzelesseg) / 2;
     return kezdoX + index * (LAP_SZELES + LAP_KOZ);
 }
 
@@ -26,13 +21,13 @@ function rajzol() {
     ctx.fillRect(0, 0, VASZON_SZELES, VASZON_MAGAS);
 
     // (d) A gép lapjai: csak a hátlapjuk látszik
-    for (var i = 0; i < gepKeze.length; i++) {
+    for (let i = 0; i < gepKeze.length; i++) {
         hatlapotRajzol(lapX(i, gepKeze.length), GEP_SOR_Y);
     }
 
     // A játékos lapjai: előlap, a letehetők sárgán kiemelve
-    for (var j = 0; j < jatekosKeze.length; j++) {
-        var lap = jatekosKeze[j];
+    for (let j = 0; j < jatekosKeze.length; j++) {
+        let lap = jatekosKeze[j];
         lapotRajzol(lap, lapX(j, jatekosKeze.length), JATEKOS_SOR_Y, lerakhatoE(lap));
     }
 
