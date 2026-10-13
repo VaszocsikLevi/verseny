@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: #1d2b22;
+    color: #f2efe6;
+    text-align: center;
+}
+
+h1 { margin: 0 0 16px 0; }
+
+canvas {
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+button {
+    padding: 10px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    background: #d4a845;
+    color: #1d2b22;
+    cursor: pointer;
+}
+button:hover { background: #e6bd5c; }
