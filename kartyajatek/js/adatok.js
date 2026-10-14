@@ -1,14 +1,18 @@
-// Méretek 
-const VASZON_SZELES = 900;
-const VASZON_MAGAS = 600;
+// Telefon vagy számítógép? (álló, keskeny képernyő = telefon)
+const TELEFON = window.innerWidth < 700 && window.innerHeight > window.innerWidth;
+
+// Méretek – telefonon álló, keskeny vásznat használunk
+const VASZON_SZELES = TELEFON ? 420 : 900;
+const VASZON_MAGAS = TELEFON ? 720 : 600;
 const LAP_SZELES = 80;
 const LAP_MAGAS = 120;
 const LAP_KOZ = 16;              
 
 // Lapsorok a vásznon 
 const GEP_SOR_Y = 40;
-const ASZTAL_Y = 240;
+const ASZTAL_Y = (VASZON_MAGAS - LAP_MAGAS) / 2;
 const JATEKOS_SOR_Y = VASZON_MAGAS - LAP_MAGAS - 40;
+const PAKLI_X = TELEFON ? 20 : 60;
 
 // Játék beállítások
 const KEZDO_LAPOK = 4;
