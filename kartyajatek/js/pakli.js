@@ -12,7 +12,7 @@ function paklitKeszit() {
             });
         }
     }
-    return pakli;   // 4 szín × 8 érték = 32 lap
+    return pakli;   
 }
 
 // Keverés (Fisher–Yates) – magyarázat: MAGYARAZAT.md 4. pont

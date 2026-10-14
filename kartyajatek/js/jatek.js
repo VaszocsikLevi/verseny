@@ -49,7 +49,7 @@ function korIndul() {
 
     if (hivo === "jatekos") {
         fazis = "jatekos_hiv";
-        uzenet = "Te hívsz – kattints egy lapodra!";
+        uzenet = "Te hívsz, kattints egy lapodra!";
     } else {
         fazis = "gep_hiv";
         uzenet = "A gép hív...";
@@ -64,9 +64,9 @@ function gepHiv() {
     fazis = "jatekos_ratesz";
 
     if (utoLapok(jatekosKeze, hivottLap).length > 0) {
-        uzenet = "Tudsz ütni, ezért ütnöd kell! (sárga lapok)";
+        uzenet = "Tudsz ütni, ezért ütnöd kell!";
     } else {
-        uzenet = "Nem tudsz ütni – tegyél rá bármit.";
+        uzenet = "Nem tudsz ütni, tegyél rá bármit.";
     }
 }
 

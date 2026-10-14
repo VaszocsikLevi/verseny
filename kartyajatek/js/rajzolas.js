@@ -4,7 +4,7 @@ let ctx;
 function rajzolasIndit() {
     vaszon = document.getElementById("jatekter");
     ctx = vaszon.getContext("2d");
-    setInterval(rajzol, 30);     // mint a tananyagban: 30 ms-onként újrarajzol
+    setInterval(rajzol, 30);    
 }
 
 // Hányadik pixelnél kezdődik a kézben az index-edik lap?
@@ -16,11 +16,10 @@ function lapX(index, darab) {
 }
 
 function rajzol() {
-    // Asztal (háttér)
     ctx.fillStyle = "#2e6b45";
     ctx.fillRect(0, 0, VASZON_SZELES, VASZON_MAGAS);
 
-    // (d) A gép lapjai: csak a hátlapjuk látszik
+    //A gép lapjai: csak a hátlapjuk látszik
     for (let i = 0; i < gepKeze.length; i++) {
         hatlapotRajzol(lapX(i, gepKeze.length), GEP_SOR_Y);
     }
@@ -45,7 +44,7 @@ function rajzol() {
         szoveg(pakli.length + " lap", 100, ASZTAL_Y + LAP_MAGAS + 22, 14, "center");
     }
 
-    // (h) Pontok mindkét oldalon
+    //Pontok mindkét oldalon
     szoveg("Gép: " + pontokOsszege(gepVitte) + " pont", 20, 25, 18, "left");
     szoveg("Te: " + pontokOsszege(jatekosVitte) + " pont", 20, VASZON_MAGAS - 12, 18, "left");
     if (hivo === "jatekos") {
@@ -57,7 +56,7 @@ function rajzol() {
     // Üzenet
     szoveg(uzenet, VASZON_SZELES / 2, ASZTAL_Y - 20, 20, "center");
 
-    // (j) Játék vége: sötét réteg + nagy felirat
+    //Játék vége
     if (fazis === "vege") {
         ctx.fillStyle = "rgba(0, 0, 0, 0.65)";
         ctx.fillRect(0, 0, VASZON_SZELES, VASZON_MAGAS);
