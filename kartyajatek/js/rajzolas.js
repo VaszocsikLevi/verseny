@@ -3,6 +3,8 @@ let ctx;
 
 function rajzolasIndit() {
     vaszon = document.getElementById("jatekter");
+    vaszon.width = VASZON_SZELES;     // a vászon belső mérete (telefonon más)
+    vaszon.height = VASZON_MAGAS;
     ctx = vaszon.getContext("2d");
     setInterval(rajzol, 30);    
 }
@@ -40,8 +42,8 @@ function rajzol() {
 
     // Pakli a bal oldalon
     if (pakli.length > 0) {
-        hatlapotRajzol(60, ASZTAL_Y);
-        szoveg(pakli.length + " lap", 100, ASZTAL_Y + LAP_MAGAS + 22, 14, "center");
+        hatlapotRajzol(PAKLI_X, ASZTAL_Y);
+        szoveg(pakli.length + " lap", PAKLI_X + LAP_SZELES / 2, ASZTAL_Y + LAP_MAGAS + 22, 14, "center");
     }
 
     //Pontok mindkét oldalon
@@ -60,9 +62,10 @@ function rajzol() {
     if (fazis === "vege") {
         ctx.fillStyle = "rgba(0, 0, 0, 0.65)";
         ctx.fillRect(0, 0, VASZON_SZELES, VASZON_MAGAS);
-        szoveg("Vége a játéknak", VASZON_SZELES / 2, 250, 40, "center");
-        szoveg(uzenet, VASZON_SZELES / 2, 310, 30, "center");
-        szoveg("Új játékhoz nyomd meg a gombot.", VASZON_SZELES / 2, 360, 18, "center");
+        const kozep = VASZON_MAGAS / 2;
+        szoveg("Vége a játéknak", VASZON_SZELES / 2, kozep - 50, 40, "center");
+        szoveg(uzenet, VASZON_SZELES / 2, kozep + 10, 30, "center");
+        szoveg("Új játékhoz nyomd meg a gombot.", VASZON_SZELES / 2, kozep + 60, 18, "center");
     }
 }
 
@@ -105,5 +108,7 @@ function szoveg(szoveg, x, y, meret, igazitas) {
     ctx.fillStyle = "#f2efe6";
     ctx.font = meret + "px Arial";
     ctx.textAlign = igazitas;
-    ctx.fillText(szoveg, x, y);
+    // 4. paraméter: max. szélesség – ha a szöveg hosszabb, összenyomja,
+    // így telefonon sem lóg ki a vászonból
+    ctx.fillText(szoveg, x, y, VASZON_SZELES - 20);
 }

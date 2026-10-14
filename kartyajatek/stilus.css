@@ -10,9 +10,18 @@ body {
 h1 { margin: 0 0 16px 0; }
 
 canvas {
+    display: block;
+    margin: 0 auto;
+    /* A vászon soha nem lehet szélesebb a képernyőnél és magasabb a látható résznél.
+       width/height: auto → megtartja az oldalarányát, csak kicsinyedik. */
+    max-width: 100%;
+    max-height: calc(100vh - 140px);
+    width: auto;
+    height: auto;
     border-radius: 10px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
     cursor: pointer;
+    touch-action: manipulation;   /* telefonon nem zoomol dupla koppintásra */
 }
 
 button {
@@ -26,3 +35,12 @@ button {
     cursor: pointer;
 }
 button:hover { background: #e6bd5c; }
+
+/* Telefon */
+@media (max-width: 700px) {
+    body { padding: 10px; }
+    h1 { font-size: 22px; margin-bottom: 8px; }
+    canvas { max-height: calc(100vh - 110px); }
+    p { margin: 10px 0; }
+    button { width: 100%; padding: 14px; font-size: 18px; }
+}
