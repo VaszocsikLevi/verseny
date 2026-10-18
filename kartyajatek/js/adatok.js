@@ -1,10 +1,10 @@
-// Telefon vagy számítógép? (álló, keskeny képernyő = telefon)
+//Megnézzük, hogy telefonon vagy laptopon van megnyitva
 const TELEFON = window.innerWidth < 700 && window.innerHeight > window.innerWidth;
 
-// Méretek – telefonon álló, keskeny vásznat használunk
+// Méretek a telefonon
 const VASZON_SZELES = TELEFON ? 420 : 900;
 const VASZON_MAGAS = TELEFON ? 720 : 600;
-const LAP_SZELES = 80;
+const LAP_SZELES = 80; 
 const LAP_MAGAS = 120;
 const LAP_KOZ = 16;              
 

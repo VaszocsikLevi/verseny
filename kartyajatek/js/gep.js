@@ -4,14 +4,14 @@ function gepHivoLapja(kez) {
 }
 
 //A gép válaszol:
-// - ha tud ütni, kötelező, és a leggyengébb ütő lapját használja (a jobbakat megtartja)
+// - ha tud ütni, kötelező, és a leggyengébb ütő lapját használja
 // - ha nem tud, a legkevesebb pontot érőt dobja el
 function gepRaadottLapja(kez, hivottLap) {
     const uto = utoLapok(kez, hivottLap);
     if (uto.length > 0) {
         return leggyengebb(uto);
     }
-    return legkevesebbPontu(kez);
+    return legkevesebbPontu(kez); 
 }
 
 function legkevesebbPontu(lapok) {

@@ -1,8 +1,7 @@
 function kattintas(event) {
     const vaszonHelye = vaszon.getBoundingClientRect();
 
-    // A CSS kicsinyítheti a vásznat (pl. telefonon 420 helyett 370 px széles).
-    // Ilyenkor a kattintás helyét vissza kell váltani a vászon belső méretére.
+    // A CSS kicsinyítheti a vásznat, a kattintás helyét vissza kell váltani a vászon belső méretére.
     const arany = vaszon.width / vaszonHelye.width;
     const x = (event.clientX - vaszonHelye.left) * arany;
     const y = (event.clientY - vaszonHelye.top) * arany;
