@@ -187,6 +187,11 @@ function kirajzolas() {
     }
     document.getElementById("statisztika").textContent =
         "Lépések: " + lepesSzam + " | Felfedezett mezők: " + bejartMezok + " / " + szabadMezok
+
+    if (bejartMezok === szabadMezok) {
+        setaMegallitas()
+        document.getElementById("f4Statisztika").textContent += " – A térkép felderítve!"
+    }
 }
 
 // léphet-e a bit erre a mezőre
