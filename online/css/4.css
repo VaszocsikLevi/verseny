@@ -1,12 +1,9 @@
-/* 4. feladat – Véletlenszerű séta */
-
-#f4 {
+#seta {
     font-family: Arial, sans-serif;
     text-align: center;
 }
 
-/* gombok, csúszka, checkbox egy sorban */
-#f4Vezerlok {
+#setaGombok {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
@@ -15,19 +12,17 @@
     margin: 12px 0;
 }
 
-#f4Vezerlok button {
+#setaGombok button {
     padding: 6px 14px;
     cursor: pointer;
 }
 
-/* a térkép */
-#f4Terkep {
+#terkepTabla {
     border-collapse: collapse;
     margin: 0 auto;
 }
 
-/* felfedezetlen szabad mező */
-#f4Terkep td {
+#terkepTabla td {
     width: 44px;
     height: 44px;
     border: 1px solid #e6a23c;
@@ -38,23 +33,20 @@
     color: #fff;
 }
 
-/* már bejárt mező */
-#f4Terkep td.f4Bejart {
+#terkepTabla td.bejart {
     background-color: #f1948a;
     color: #4a1a14;
 }
 
-/* fal */
-#f4Terkep td.f4Fal {
+#terkepTabla td.fal {
     background-color: #222;
 }
 
-/* a felfedező bit */
-#f4Terkep td.f4Bit {
+#terkepTabla td.bit {
     background-color: #3a55b4;
     color: #fff;
 }
 
-#f4Statisztika {
+#statisztika {
     margin-top: 10px;
 }
