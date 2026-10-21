@@ -1,9 +1,6 @@
-// 2. feladat – Távolsági székfoglaló
-
-// a játék állapota
-let szekek = []           // minden szék: { ertek, foglalo }  (foglalo: 0 = szabad, 1 vagy 2 = játékos)
+let szekek = []           
 let aktualisJatekos = 1
-let tiltottSzekek = []    // ezeket a székeket az aktuális játékos most nem foglalhatja le
+let tiltottSzekek = []    
 let szekJatekVege = false
 
 
@@ -42,12 +39,10 @@ function masodikFeladat() {
 function szekJatekInditas() {
     let darab = Number(document.getElementById("szekDarab").value)
 
-    // a megengedett tartományba igazítjuk
     if (darab < 10 || isNaN(darab)) darab = 10
     if (darab > 20) darab = 20
     document.getElementById("szekDarab").value = darab
 
-    // székek véletlen értékkel 5 és 15 között
     szekek = []
     for (let i = 0; i < darab; i++) {
         const ertek = Math.floor(Math.random() * 11) + 5
@@ -89,11 +84,9 @@ function szekekRajzolasa() {
         sor.appendChild(szek)
     }
 
-    // pontok frissítése
     document.getElementById("pont1").textContent = pontszam(1)
     document.getElementById("pont2").textContent = pontszam(2)
 
-    // ki következik
     const kovetkezo = document.getElementById("kovetkezoJatekos")
     if (szekJatekVege) {
         kovetkezo.textContent = "Vége a játéknak"
@@ -109,7 +102,6 @@ function szekekRajzolasa() {
 function szekKattintas(esemeny) {
     if (szekJatekVege) return
 
-    // a kattintás a szék belsejében lévő feliratra is eshet
     const szek = esemeny.target.closest(".szek")
     if (szek === null) return
 
@@ -117,16 +109,12 @@ function szekKattintas(esemeny) {
 
     if (!foglalhato(index)) return
 
-    // foglalás
     szekek[index].foglalo = aktualisJatekos
 
-    // a másik játékos a következő lépésében nem foglalhatja a közvetlen szomszédokat
     tiltottSzekek = [index - 1, index + 1]
 
-    // jön a másik játékos
     aktualisJatekos = aktualisJatekos === 1 ? 2 : 1
 
-    // ha a következő játékos nem tud foglalni, vége a játéknak
     if (!vanFoglalhatoSzek()) {
         szekJatekVege = true
         szekekRajzolasa()
@@ -140,13 +128,13 @@ function szekKattintas(esemeny) {
 
 // lefoglalhatja-e az aktuális játékos ezt a széket
 function foglalhato(index) {
-    if (szekek[index].foglalo !== 0) return false      // már foglalt
-    if (tiltottSzekek.includes(index)) return false     // a másik játékos előző foglalásának szomszédja
+    if (szekek[index].foglalo !== 0) return false      
+    if (tiltottSzekek.includes(index)) return false     
     return true
 }
 
 
-// van-e még olyan szék, amit az aktuális játékos lefoglalhat
+// van-e még foglalható szék a játékosnak
 function vanFoglalhatoSzek() {
     for (let i = 0; i < szekek.length; i++) {
         if (foglalhato(i)) return true
@@ -172,8 +160,8 @@ function szekJatekLezaras() {
     const egyes = pontszam(1)
     const kettes = pontszam(2)
 
-    let szoveg = "Nem tudott több széket foglalni a " + aktualisJatekos + ". játékos. "
-    szoveg += "1. játékos: " + egyes + " érték, 2. játékos: " + kettes + " érték. "
+    let szoveg = "Nem lehet több széket foglalni. "
+    szoveg += "1. játékos: " + egyes + " pont, 2. játékos: " + kettes + " pont. "
 
     if (egyes > kettes) {
         szoveg += "Az 1. játékos nyert!"

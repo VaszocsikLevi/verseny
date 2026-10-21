@@ -1,11 +1,8 @@
-/* 2. feladat – Távolsági székfoglaló */
-
 #szekJatek {
     font-family: Arial, sans-serif;
     text-align: center;
 }
 
-/* székek száma és új játék gomb egy sorban */
 #szekBeallitas {
     display: flex;
     flex-wrap: wrap;
@@ -25,7 +22,6 @@
     cursor: pointer;
 }
 
-/* ki következik */
 #kovetkezoJatekos {
     font-size: 20px;
     font-weight: bold;
@@ -39,7 +35,6 @@
     color: #c05621;
 }
 
-/* a székek sora */
 #szekSor {
     display: flex;
     flex-wrap: wrap;
@@ -48,7 +43,6 @@
     margin: 16px 0;
 }
 
-/* szabad szék */
 .szek {
     width: 64px;
     height: 64px;
@@ -88,7 +82,6 @@
     cursor: default;
 }
 
-/* a másik játékos előző foglalásának szomszédja – most nem foglalható */
 .szek.tiltott {
     background-color: #ddd;
     color: #999;
@@ -96,7 +89,6 @@
     cursor: not-allowed;
 }
 
-/* pontállás */
 #pontAllas {
     display: flex;
     gap: 20px;
