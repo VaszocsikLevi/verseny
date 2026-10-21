@@ -17,6 +17,12 @@
     cursor: pointer;
 }
 
+#setaGombok input {
+    width: auto;
+    padding: 0;
+    margin: 0;
+}
+
 #terkepTabla {
     border-collapse: collapse;
     margin: 0 auto;
