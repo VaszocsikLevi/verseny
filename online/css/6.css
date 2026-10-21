@@ -37,11 +37,11 @@
 }
 
 #memoriaUzenet.siker {
-    color: #1e7d32;
+    color: green;
     font-weight: bold;
 }
 
 #memoriaUzenet.hiba {
-    color: #c0392b;
+    color: red;
     font-weight: bold;
 }
