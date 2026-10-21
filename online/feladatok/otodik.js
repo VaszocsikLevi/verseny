@@ -7,12 +7,12 @@ const szinAdatok = [
     { nev: "fekete", kod: "black" }
 ];
 
-let vezetekek = [];      // A generált vezetékek tömbje
-let elvartSorrend = [];  // A helyes vágási sorrend (indexek)
-let aktualisLepes = 0;   // Hol tart a játékos a vágásban
+let vezetekek = [];
+let elvartSorrend = [];
+let aktualisLepes = 0;
 let jatekVége = false;
 
-// A feladat betöltő függvénye (amit a HTML gomb hív meg)
+// A feladat betöltése
 function loadFeladat5() {
     const torzs = document.getElementById("torzs");
     torzs.innerHTML = `
@@ -43,7 +43,7 @@ function bombaGeneralas() {
     document.getElementById("bombaUzenet").innerText = "Hatástalanítsd a bombát! Óvatosan vágd a drótokat!";
     document.getElementById("bombaUzenet").style.color = "black";
 
-    // 1. Vezetékek véletlenszerű generálása
+    // Vezetékek generálása
     for (let i = 0; i < db; i++) {
         const r = Math.floor(Math.random() * szinAdatok.length);
         const szinObj = szinAdatok[r];
@@ -64,7 +64,7 @@ function bombaGeneralas() {
         kontener.appendChild(vezetekElem);
     }
 
-    // 2. Helyes vágási sorrend kiszámítása
+    // Helyes vágási sorrend kiszámítása
     let masolat = [...vezetekek];
 
     masolat.sort((a, b) => {
@@ -85,9 +85,9 @@ function bombaGeneralas() {
 function vagasiKiserlet(index) {
     if (jatekVége) return;
 
-    // Megnézzük, hogy a kattintott vezeték a következő elvárt-e
+    // Jó vezetéket vág-e el
     if (index === elvartSorrend[aktualisLepes]) {
-        // Helyes vágás!
+        // Jó
         document.getElementById(`v_${index}`).classList.add("elvagva");
         aktualisLepes++;
 
@@ -99,7 +99,7 @@ function vagasiKiserlet(index) {
             uzenet.style.color = "green";
         }
     } else {
-        // Rossz vágás -> BUMM!
+        // Játék vége amikor vesztesz
         jatekVége = true;
         const uzenet = document.getElementById("bombaUzenet");
         uzenet.innerText = "BOOM! 💥 Rossz vezetéket vágtál el! A bomba felrobbant.";
