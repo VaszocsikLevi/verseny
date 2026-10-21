@@ -31,6 +31,10 @@ function loadFeladat5() {
 
 // Bombagenerálás
 function bombaGeneralas() {
+    if (document.getElementById("nehezseg").value < 3 || document.getElementById("nehezseg").value > 15) {
+        alert("A nehézség értéke 3 és 15 között kell legyen!");
+        return;
+    }
     const db = Number(document.getElementById("nehezseg").value);
     const kontener = document.getElementById("vezetekekKontener");
 
