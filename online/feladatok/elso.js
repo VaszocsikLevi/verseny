@@ -1,16 +1,16 @@
 function betoltes() {
 
-    if (aktivFeladat === 2) {
-        document.getElementById("torzs").innerHTML = `<h2>Relatív prím számok</h2>
+    const torzs = document.getElementById("torzs");
+    torzs.innerHTML = `<h2>Relatív prím számok</h2>
 
 <input type="number" id="szam" min="2" max="100">
 <button onclick="szamolas()">Számolás</button>
 
 <p id="eredmeny"></p>`;
-        aktivFeladat = null;
-        return;
+       
+       
     }
-}
+
 
 
 function szamolas() {
