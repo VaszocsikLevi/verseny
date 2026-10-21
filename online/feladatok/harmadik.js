@@ -1,8 +1,8 @@
-// Játék állapot változói
+//változók
 let pirosHelye = 0;
 let lehetValasztani = false;
 
-// Segédfüggvény a 3 kártya egyszerű eléréséhez
+// 3 kártya elérése
 function getKartyak() {
     return [
         document.getElementById('k0'),
@@ -11,26 +11,8 @@ function getKartyak() {
     ];
 }
 
-// Feladat betöltése (HTML injektálás) + CSS
+// Feladat betöltése
 function loadFeladat3() {
-    if (!document.getElementById("dinamikus-css")) {
-        const style = document.createElement("style");
-        style.id = "dinamikus-css";
-        style.innerHTML = `
-            .jatek-tarolo { text-align: center; font-family: sans-serif; }
-            .kartyak-kontener { display: flex; justify-content: center; gap: 20px; margin: 25px 0; }
-            .kartya-doboz {
-                width: 100px; height: 140px; font-size: 32px; line-height: 140px;
-                border: 3px solid #333; border-radius: 12px; cursor: pointer;
-                background-color: #b0bec5; position: relative;
-                transition: transform 0.3s ease-in-out;
-            }
-            .kartya-doboz:hover { transform: translateY(-5px); }
-            #startGomb { padding: 8px 20px; font-size: 16px; cursor: pointer; }
-        `;
-        document.head.appendChild(style);
-    }
-
     document.getElementById("torzs").innerHTML = `
         <div class="jatek-tarolo">
             <h1>Itt a piros, hol a piros!</h1>
@@ -78,7 +60,7 @@ function jatekInditasa() {
     }, 2000);
 }
 
-// Keverés animációval (8 lépés)
+// Keverés animációval
 function keveres(csereSzam) {
     const ido = Number(document.getElementById('sebesseg').value);
     const kartyak = getKartyak();
@@ -93,7 +75,7 @@ function keveres(csereSzam) {
 
     document.getElementById('uzenet').innerText = "Keverés...";
 
-    // Két véletlen kártya kiválasztása cserére
+    // Kártya csere
     let a = Math.floor(Math.random() * 3);
     let b = Math.floor(Math.random() * 3);
     while (a === b) b = Math.floor(Math.random() * 3);
@@ -132,6 +114,6 @@ function valasztas(index) {
     }
 
     document.getElementById('uzenet').innerText = (index === pirosHelye)
-        ? "Gratulálok, nyertél! 🎉"
-        : "Nem találtad el! Vesztettél. ❌";
+        ? "Gratulálok, nyertél!"
+        : "Nem találtad el! Vesztettél.";
 }
