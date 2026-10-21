@@ -2,20 +2,6 @@
 const meret = 10
 const falArany = 0.2   
 
-// 1 = fal, 0 = szabad mező
-const mintaTerkep = [
-    [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 1, 1, 0, 0, 1, 0, 1],
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 1],
-    [0, 0, 1, 1, 1, 1, 0, 1, 1, 1],
-    [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 1, 0, 0, 0, 0, 0, 1, 0],
-    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
-]
-
 // az aktuális térkép és a bit kezdőhelye (generáláskor töltődik ki)
 let terkep = []
 let kezdoSor = 0
@@ -51,8 +37,6 @@ function negyedikFeladat() {
             <button id="f4Lepes">Egy lépés</button>
             <button id="f4Ujra">Újrakezdés</button>
             <button id="f4UjTerkep">Új térkép</button>
-            <button id="f4Minta">Mintatérkép</button>
-
             <label for="f4Sebesseg">Lépésköz:</label>
             <input type="range" id="f4Sebesseg" min="50" max="1000" step="50" value="300">
             <span id="f4SebessegKiir">300 ms</span>
@@ -74,8 +58,6 @@ function negyedikFeladat() {
     document.getElementById("f4Ujra").addEventListener("click", ujrakezdes)
     document.getElementById("f4Sebesseg").addEventListener("input", sebessegValtozas)
     document.getElementById("f4UjTerkep").addEventListener("click", ujTerkep)
-    document.getElementById("f4Minta").addEventListener("click", mintaBetoltes)
-
     ujTerkep()
 }
 
@@ -103,19 +85,6 @@ function ujTerkep() {
 
     ujrakezdes()
 }
-
-
-// a feladatlap példa ábrájának betöltése
-function mintaBetoltes() {
-    terkep = []
-    for (let i = 0; i < mintaTerkep.length; i++) {
-        terkep[i] = mintaTerkep[i].slice()   // másolat, hogy az eredeti ne változzon
-    }
-    kezdoSor = 2
-    kezdoOszlop = 2
-    ujrakezdes()
-}
-
 
 // minden szabad mező elérhető-e a kezdőhelyről? (elárasztás)
 function osszefuggo() {
