@@ -1,0 +1,125 @@
+/* 2. feladat – Távolsági székfoglaló */
+
+#szekJatek {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+/* székek száma és új játék gomb egy sorban */
+#szekBeallitas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    margin: 12px 0;
+}
+
+#szekBeallitas input {
+    width: 60px;
+    padding: 5px;
+}
+
+#szekBeallitas button {
+    padding: 6px 14px;
+    cursor: pointer;
+}
+
+/* ki következik */
+#kovetkezoJatekos {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#kovetkezoJatekos.egyes {
+    color: #2b6cb0;
+}
+
+#kovetkezoJatekos.kettes {
+    color: #c05621;
+}
+
+/* a székek sora */
+#szekSor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin: 16px 0;
+}
+
+/* szabad szék */
+.szek {
+    width: 64px;
+    height: 64px;
+    border: 2px solid #555;
+    border-radius: 8px 8px 4px 4px;
+    background-color: #f2f2f2;
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.szek:hover {
+    background-color: #e2e2e2;
+}
+
+.szek small {
+    font-size: 10px;
+    font-weight: normal;
+}
+
+/* foglalt székek */
+.szek.foglalt1 {
+    background-color: #2b6cb0;
+    border-color: #1a4a80;
+    color: #fff;
+    cursor: default;
+}
+
+.szek.foglalt2 {
+    background-color: #c05621;
+    border-color: #8a3a12;
+    color: #fff;
+    cursor: default;
+}
+
+/* a másik játékos előző foglalásának szomszédja – most nem foglalható */
+.szek.tiltott {
+    background-color: #ddd;
+    color: #999;
+    border-style: dashed;
+    cursor: not-allowed;
+}
+
+/* pontállás */
+#pontAllas {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.jatekosDoboz {
+    padding: 8px 16px;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.jatekosDoboz.egyes {
+    background-color: #2b6cb0;
+}
+
+.jatekosDoboz.kettes {
+    background-color: #c05621;
+}
+
+#szekEredmeny {
+    margin-top: 14px;
+    font-size: 18px;
+    font-weight: bold;
+}
