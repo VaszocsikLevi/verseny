@@ -4,81 +4,10 @@ let kartyaSorrend = [0, 1, 2]; // A kártyák logikai sorrendje a dobozokban
 let lehetValasztani = false;  // Csak keverés után lehessen kattintani
 
 // CSS injektálása JavaScriptből (külön CSS fájl sem kell!)
-function cssBetoltese() {
-    if (!document.getElementById("dinamikus-css-harmadik")) {
-        const stilusElem = document.createElement("style");
-        stilusElem.id = "dinamikus-css-harmadik";
-        stilusElem.innerHTML = `
-            .jatek-tarolo {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-                user-select: none;
-            }
-            .kartyak-kontener {
-                display: flex;
-                justify-content: center;
-                gap: 20px;
-                margin: 20px 0;
-                position: relative;
-                min-height: 150px;
-            }
-            .kartya-doboz {
-                width: 100px;
-                height: 140px;
-                font-size: 32px;
-                line-height: 140px;
-                border: 3px solid #333;
-                border-radius: 12px;
-                cursor: pointer;
-                background-color: #b0bec5;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-                position: relative;
-                left: 0;
-                top: 0;
-                transition: transform 0.3s ease-in-out, background-color 0.3s;
-                text-align: center;
-            }
-            .kartya-doboz:hover {
-                transform: translateY(-5px);
-            }
-            .sebesseg-doboz {
-                font-size: 16px;
-                font-weight: bold;
-            }
-            .sebesseg-doboz select {
-                padding: 5px 10px;
-                font-size: 15px;
-                border-radius: 5px;
-            }
-            #startGomb {
-                padding: 10px 25px;
-                font-size: 18px;
-                font-weight: bold;
-                background-color: #4caf50;
-                color: white;
-                border: none;
-                border-radius: 6px;
-                cursor: pointer;
-            }
-            #startGomb:disabled {
-                background-color: #ccc;
-                cursor: not-allowed;
-            }
-            #uzenet {
-                font-size: 22px;
-                min-height: 30px;
-                margin: 10px 0;
-            }
-        `;
-        document.head.appendChild(stilusElem);
-    }
-}
+
 
 // 1. A HTML gombra lefutó betöltő függvény
 function loadFeladat3() {
-    cssBetoltese();
 
     const torzs = document.getElementById("torzs");
     torzs.innerHTML = `
