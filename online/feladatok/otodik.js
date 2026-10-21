@@ -29,7 +29,7 @@ function loadFeladat5() {
     `;
 }
 
-// Bombagenerálás és a helyes sorrend kiszámítása
+// Bombagenerálás
 function bombaGeneralas() {
     const db = Number(document.getElementById("nehezseg").value);
     const kontener = document.getElementById("vezetekekKontener");
@@ -64,7 +64,7 @@ function bombaGeneralas() {
         kontener.appendChild(vezetekElem);
     }
 
-    // Helyes vágási sorrend kiszámítása
+    // Helyes sorrend
     let masolat = [...vezetekek];
 
     masolat.sort((a, b) => {
@@ -72,26 +72,26 @@ function bombaGeneralas() {
         let abcHasonlitas = b.nev.localeCompare(a.nev, 'hu');
 
         if (abcHasonlitas !== 0) {
-            return abcHasonlitas; // Ha eltér a szín neve, az ABC-ben későbbi jön előre
+            return abcHasonlitas;
         } else {
-            return a.id - b.id;  // Ha egyforma a szín, a baloldali (kisebb id) jön előre
+            return a.id - b.id;
         }
     });
 
     elvartSorrend = masolat.map(v => v.id);
 }
 
-// Drót elvágásának kezelése
+// Drót elvágása
 function vagasiKiserlet(index) {
     if (jatekVége) return;
 
-    // Jó vezetéket vág-e el
+    //vezeték vágás ellenőrzése
     if (index === elvartSorrend[aktualisLepes]) {
         // Jó
         document.getElementById(`v_${index}`).classList.add("elvagva");
         aktualisLepes++;
 
-        // Ellenőrizzük, hogy mindet elvágta-e
+        // mind meg van-e
         if (aktualisLepes === elvartSorrend.length) {
             jatekVége = true;
             const uzenet = document.getElementById("bombaUzenet");
