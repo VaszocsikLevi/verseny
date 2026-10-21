@@ -15,6 +15,7 @@
 #szekBeallitas input {
     width: 60px;
     padding: 5px;
+    margin: 0;
 }
 
 #szekBeallitas button {
