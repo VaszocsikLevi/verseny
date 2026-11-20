@@ -11,10 +11,249 @@ let energia = kezdoEnergia;
 let taska = { alma: 0, korte: 0, szolo: 0 };
 let vege = false;
 
+let szimulacio = false;
+let automataFut = false;
+let mindentFelszed = true;
+
+//bot
+
+// Mennyivel nőne a pontszám, ha felvennénk a (sor, oszlop) mezőn lévő gyümölcsöt?
+const nyereseg = (sor, oszlop) =>{
+    const fajta = palya[sor][oszlop];
+    if (fajta === null) return 0;
+
+    const masolat = {...taska};
+    masolat[fajta]++;
+    return pontszamSzamolas(masolat)-pontszamSzamolas(taska);
+}
+
+// Hány energiába kerül odalépni? (Manhattan-távolság, az első lépés ingyen)
+const koltseg = (sor,oszlop)=>{
+    if (jatekosSor===null) return 0;
+    const tavolsag = Math.abs(sor - jatekosSor) + Math.abs(oszlop - jatekosOszlop);
+    return tavolsag; 
+}
+
+// Mennyi pontot veszítenénk, ha megennénk egy ilyen fajtájú gyümölcsöt a táskából?
+const veszteseg = (fajta)=>{
+    const masolat = {...taska};          
+    masolat[fajta]--;
+    return pontszamSzamolas(taska) - pontszamSzamolas(masolat);
+}
+
+// Melyik gyümölcsöt érdemes megenni? Amelyiknél 1 energiáért a legkevesebb pont vész el.
+const legjobbEtel= ()=>{
+    let legjobbGyumi = null;
+    let ertek = Infinity;
+    for (const fajta of Gyumolcsok) {
+        if(taska[fajta]===0) continue;
+        // Körtevédelem
+        if (fajta==="korte" && (taska["alma"] > 0 || taska["szolo"] > 0 )) continue;
+        let pont = veszteseg(fajta) / Energiak[fajta]
+        if(pont < ertek) {
+            legjobbGyumi = fajta;
+            ertek=pont;
+        } 
+    } 
+    return legjobbGyumi
+}
+
+// melyik elérhető gyümölcs éri meg a legjobban?
+const legjobbLepes=()=>{
+    let legjobb = null;
+    let legjobbErtek = -1;
+
+    for (let i = 0; i < Meret; i++) {
+        for (let y = 0; y < Meret; y++) {
+            const ertek = palya[i][y];
+            if (ertek == null) continue;
+            if(koltseg(i,y) > energia) continue;            
+            // Math.max(1, ...): az első lépésnél a költség 0
+            let ertekArany = nyereseg(i,y)/ Math.max(1,koltseg(i,y));
+            if (ertekArany > legjobbErtek) {
+                legjobb = {sor: i, oszlop:y};
+                legjobbErtek = ertekArany;
+            }            
+        }
+    }
+    return legjobb;
+}
+
+// Ha a cél felé menet van gyümölcs "útközben", azt vegyük fel előbb.
+const utbaEsoGyumolcs=(cel)=>{
+    if (jatekosSor === null) return cel;       // első lépésnél nincs "út"
+    // a téglalap sarkai
+    const sorTol = Math.min(jatekosSor, cel.sor);
+    const sorIg = Math.max(jatekosSor, cel.sor);
+    const oszlopTol = Math.min(jatekosOszlop, cel.oszlop);
+    const oszlopIg = Math.max(jatekosOszlop, cel.oszlop);
+
+    let legjobb = cel;
+    let legkisebbTav = koltseg(cel.sor, cel.oszlop);
+    for (let i = sorTol; i <= sorIg; i++) {
+        for (let y = oszlopTol; y <= oszlopIg; y++) {
+            if (palya[i][y] === null) continue;
+            const tav = koltseg(i, y);
+            if (tav < legkisebbTav) {             
+                legjobb = {sor: i, oszlop: y};
+                legkisebbTav = tav;
+            }
+        }
+    }
+    return legjobb;
+}
+
+// Lép, ha tud; ha nem, eszik; ha az sem megy, vége.
+const automataLepes=()=>{
+    if(vege) return false;
+    let lepes = legjobbLepes();
+    if (lepes!==null) {
+        lepes = utbaEsoGyumolcs(lepes);   // ha van útközben gyümölcs, előbb azt vesszük fel
+        kattintas(lepes.sor,lepes.oszlop);
+        return true;
+    }else{
+        const etel = legjobbEtel();      // egyszer hívjuk meg, eltároljuk
+        if (etel!==null) {
+            eszik(etel);
+            return true;
+        }else{
+            vege=true;
+            kirajzol();
+            return false;
+        }
+    }
+}
+
+// A bot a már kirajzolt változókon próbálgat a háttérben, de előtte elmenti az állapotot,
+// utána pedig visszaállítja.
+
+const mentes=()=>{
+    return{
+        palya: palya.map(sor=> [...sor]),  
+        taska: {...taska},
+        palyaGyumolcs: palyaGyumolcs,
+        jatekosSor: jatekosSor,
+        jatekosOszlop: jatekosOszlop,
+        energia: energia,
+        vege: vege
+    }
+}
+
+// A palya-t és a taska-t is másolattal adjuk vissza
+const visszaallit=(m)=>{
+    palya = m.palya.map(sor=> [...sor]);
+    taska = {...m.taska};
+    palyaGyumolcs = m.palyaGyumolcs;
+    jatekosSor = m.jatekosSor;
+    jatekosOszlop = m.jatekosOszlop;
+    energia = m.energia;
+    vege = m.vege;
+}
+
+//Háttérben fut le a játék
+const hatterJatek=()=>{
+    let csucsPont = pontszamSzamolas(taska);
+    let csucsLepes = 0;
+    let lepesSzam = 0;
+    while (automataLepes()) {
+        lepesSzam++;
+        const pont = pontszamSzamolas(taska);
+        if (pont > csucsPont) {
+            csucsPont = pont;
+            csucsLepes = lepesSzam;
+        }
+    }
+
+    // hány gyümölcs maradt a pályán?
+    let maradt = 0;
+    for (const sor of palya) {
+        for (const mezo of sor) {
+            if (mezo !== null) maradt++;
+        }
+    }
+
+    if (mindentFelszed) {
+        return { pont: pontszamSzamolas(taska), csucsLepes: lepesSzam, maradt: maradt };
+    }
+    return { pont: csucsPont, csucsLepes: csucsLepes, maradt: maradt };
+}
+
+// Melyik próbajáték a jobb? 
+const jobbEredmeny=(uj, regi)=>{
+    if (regi === null) return true;
+    if (mindentFelszed && uj.maradt !== regi.maradt) {
+        return uj.maradt < regi.maradt;
+    }
+    return uj.pont > regi.pont;
+}
+
+// 45 gyümölcsre végigjátsza a játékot és kiválasztja a legkedvezzöbb kezdőpontot
+const legjobbKezdes=()=>{
+    const m = mentes();
+    szimulacio = true;
+    let legjobb = null;
+
+    for (let i = 0; i < Meret; i++) {
+        for (let y = 0; y < Meret; y++) {
+            if (m.palya[i][y] === null) continue;   // csak gyümölcsről lehet indulni
+
+            visszaallit(m);
+            kattintas(i, y);
+            const eredmeny = hatterJatek(); 
+
+            if (jobbEredmeny(eredmeny, legjobb)) {   // a mód szerinti összehasonlítás
+                legjobb = { sor: i, oszlop: y, pont: eredmeny.pont, csucsLepes: eredmeny.csucsLepes, maradt: eredmeny.maradt };
+            }
+        }
+    }
+
+    visszaallit(m);                     
+    szimulacio = false;
+    return legjobb;
+}
+
+// Ha még nem léptünk: kiszámolja a legjobb kezdőpontot, és onnan játssza le.
+// Ha már léptünk: a mostani állásból folytatja.
+const automataJatek = () => {
+    if (vege || automataFut) return;     
+    automataFut = true;
+
+    let terv;
+    if (jatekosSor === null) {
+        terv = legjobbKezdes();          
+        console.log("Legjobb kezdés:", terv);
+        kattintas(terv.sor, terv.oszlop);    
+    } else {
+        const m = mentes();
+        szimulacio = true;
+        terv = hatterJatek();
+        visszaallit(m);
+        szimulacio = false;
+    }
+
+    // Ugyanazt játssza le, amit a háttérben kiszámolt.
+    let lepesSzam = 0;
+    const idozito = setInterval(() => {
+        let folytatja = false;
+        if (lepesSzam < terv.csucsLepes) {
+            folytatja = automataLepes();
+            lepesSzam++;
+        }
+        if (!folytatja) {
+            clearInterval(idozito);      
+            vege = true;                 
+            automataFut = false;
+            kirajzol();
+        }
+    }, 200);                             
+}
+
+//játék
+
 //kattintás érzékelésa
 document.getElementById("palya").addEventListener("click", function (event) {
-    const mezo = event.target.closest(".mezo"); //ha az emojira kattintunk az nem érzékrlné,ezért kell a kattintáshoz legközelebbit keresni.
-    if (!mezo) return; //ha a rácson kivülre kattintunk akkor ne történjen semmi
+    const mezo = event.target.closest(".mezo");
+    if (!mezo) return;
 
     const sor = Number(mezo.dataset.sor);
     const oszlop = Number(mezo.dataset.oszlop);
@@ -51,6 +290,7 @@ function gyumolcsFeltoltes(palya) {
 
 //végigmegy minden mezőn
 function kirajzol() {
+    if (szimulacio) return; 
     let mezok = "";
     for (let i = 0; i < Meret; i++) {
         for (let y = 0; y < Meret; y++) {
@@ -75,10 +315,10 @@ function kirajzol() {
 };
 
 //pontszámítás
-function pontszamSzamolas() {
-    const alma = taska["alma"];
-    const korte = taska["korte"];
-    const szolo = taska["szolo"];
+function pontszamSzamolas(t) {
+    const alma = t["alma"];
+    const korte = t["korte"];
+    const szolo = t["szolo"];
 
     //alma 2pont
     let almaPont = alma * 2;
@@ -101,7 +341,7 @@ function oldalsavKirajzol() {
     let oldalSav = `<p>Energia: ${energia}</p>`;
 
     //pontszám kijelzés
-    oldalSav += `<p>Eddigi pontszámod: ${pontszamSzamolas()}</p>`;
+    oldalSav += `<p>Eddigi pontszámod: ${pontszamSzamolas(taska)}</p>`;
 
     for (const fajta of Gyumolcsok) {
         oldalSav += `<p class="gyumik">${Jelek[fajta]} ${taska[fajta]}</p>`;
@@ -110,12 +350,19 @@ function oldalsavKirajzol() {
     oldalSav +=
         `<p>
     <button id="mogomb" ${vege ? "disabled" : ""}>Gyümölcsevés</button>
-    <button id="vegegomb"${vege ? "disabled" : ""}>Játék vége</button>
+    <button id="vegegomb" ${vege ? "disabled" : ""}>Játék vége</button>
+    <button id="automataGomb" ${vege ? "disabled" : ""}>Automata játék</button>
+    </p>`
+
+    const tiltas = automataFut ? "disabled" : "";
+    oldalSav += `<p>
+        <label><input type="radio" name="automataMod" value="minden" ${mindentFelszed ? "checked" : ""} ${tiltas}> Mindent felszed</label>
+        <label><input type="radio" name="automataMod" value="pont" ${!mindentFelszed ? "checked" : ""} ${tiltas}> Legtöbb pont</label>
     </p>`
 
     //pontszám megjelenítése a játék végeztével
     if (vege) {
-        oldalSav += `<h2>Játék vége! Pontszámod: ${pontszamSzamolas()}</h2>
+        oldalSav += `<h2>Játék vége! Pontszámod: ${pontszamSzamolas(taska)}</h2>
         <button id="ujjatek">Új játék</button>`
     }
 
@@ -131,7 +378,7 @@ function kattintas(sor, oszlop) {
     if (mezoErteke === null) {
         alert("Nincs gyümölcs a mezőn!")
         return;
-    }  // csak gyümölcsre lehet lépni
+    }
 
     if (jatekosSor === null) {
     jatekosSor = sor;
@@ -198,10 +445,17 @@ document.getElementById("oldalsav").addEventListener("click", function (event) {
         kirajzol();
     }else if (event.target.id === "ujjatek") {
     ujJatek();
+    }else if (event.target.id === "automataGomb") {
+        automataJatek();   
     }
 });
 
 
+document.getElementById("oldalsav").addEventListener("change", function (event) {
+    if (event.target.name === "automataMod") {
+        mindentFelszed = (event.target.value === "minden");
+    }
+});
 
 document.getElementById("evesGombok").addEventListener("click", function (event) {
     const gomb = event.target.closest(".evesGomb");
