@@ -42,7 +42,7 @@ const mohoLepes = (allapot) => {
   return legjobb || { choiceIndex: 0, row: 0, column: 0 };
 };
 
-const GEP_NEV = { konnyu: "Gép (könnyű)", nehez: "Gép (nehéz)" };
+const GEP_NEV = { konnyu: "Gép, könnyű", nehez: "Gép, nehéz" };
 
 const gepLepes = (szint, allapot) => {
   if (szint === "nehez" && typeof choose_action === "function") {
