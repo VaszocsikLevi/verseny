@@ -1,3 +1,4 @@
+// Pontszámláló: visszaadja a [p1, p2] pontszámot, a pályát nem módosítja.
 const calculate_score = (map) => {
   const { width, height, content } = map;
 
