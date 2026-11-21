@@ -1,3 +1,4 @@
+// Pontszámláló: visszaadja a [p1, p2] pontszámot, a pályát nem módosítja.
 const calculate_score = (map) => {
   const { width, height, content } = map;
 
@@ -37,4 +38,5 @@ const calculate_score = (map) => {
   return [score.p1, score.p2];
 };
 
-module.exports = { calculate_score };
+// Node-ban exportálja, böngészőben nem dob hibát.
+if (typeof module !== "undefined") module.exports = { calculate_score };
