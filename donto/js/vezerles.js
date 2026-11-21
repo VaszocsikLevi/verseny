@@ -4,7 +4,7 @@ const J = {
   kezdo: null, // { map, pool } – a játék kezdőállása
   lepesek: [], // [{ choiceIndex, row, column }]
   seed: null,
-  gep: { p1: null, p2: null }, // null = ember, "konnyu" | "nehez" = gép
+  gep: { p1: null, p2: null }, // null = ember, "gep" = a bot
   kivalasztott: null, // a kijelölt készletelem indexe
   hover: null, // [r, c] az egér alatti mező
   vj: null, // visszajátszás: { lepesek, poz, fut, idozito }
@@ -57,20 +57,20 @@ const frissit = () => {
     kattinthato: !!elem,
   });
   keszletRajzol(a.pool, J.kivalasztott, emberLep);
-  pontRajzol(a, jatekosNevek(), elonezetPont);
+  pontRajzol(a, { p1: J.gep.p1 ? GEP_NEV[J.gep.p1] : "", p2: J.gep.p2 ? GEP_NEV[J.gep.p2] : "" }, elonezetPont);
   naploRajzol(a.naplo, J.vj ? J.vj.poz - 1 : -1, !!J.vj);
 
   // Állapotsor
   let szoveg;
   if (a.vege) {
     const [x, y] = a.pont;
-    szoveg = x === y ? `Vége – döntetlen (${x} : ${y})` : `Vége – ${x > y ? "Kék" : "Narancs"} nyert (${x} : ${y})`;
+    szoveg = x === y ? `Vége, döntetlen · ${x} : ${y}` : `Vége, ${x > y ? "Kék" : "Narancs"} nyert · ${x} : ${y}`;
   } else if (J.gondolkodik) szoveg = `<span class="porgo"></span> ${jatekosNevek()[a.kovetkezo]} gondolkodik…`;
-  else if (J.vj) szoveg = `Visszajátszás – ${JATEKOS_NEV[a.kovetkezo]} következik`;
+  else if (J.vj) szoveg = `Visszajátszás · ${JATEKOS_NEV[a.kovetkezo]} következik`;
   else if (J.gep[a.kovetkezo]) szoveg = `${jatekosNevek()[a.kovetkezo]} következik`;
-  else szoveg = `<b class="j-${a.kovetkezo}">${JATEKOS_NEV[a.kovetkezo]}</b> következik – ${elem ? `${elemNev(elem)}: válassz mezőt` : "válassz elemet a készletből"}`;
-  if (elem && ervenyes && ervenyes.size === 0) szoveg += " <em>(nincs érvényes célpont – bárhová kattintva hatás nélkül elhasználod)</em>";
-  $("allapotSor").innerHTML = `${szoveg}<span class="seed">${J.seed !== null ? `pálya #${J.seed} · ` : ""}${a.map.width}×${a.map.height}</span>`;
+  else szoveg = `<span class="potty ${a.kovetkezo}"></span><b>${JATEKOS_NEV[a.kovetkezo]}</b> következik · ${elem ? `${elemNev(elem)}, válassz mezőt` : "válassz elemet a készletből"}`;
+  if (elem && ervenyes && ervenyes.size === 0) szoveg += " <span class=\"halk\">· nincs érvényes célpont, bármelyik mezőre kattintva hatás nélkül elhasználod</span>";
+  $("allapotSor").innerHTML = `<span class="allapot-szoveg">${szoveg}</span><span class="seed">${J.seed !== null ? `pálya ${J.seed} · ` : ""}${a.map.width}×${a.map.height}</span>`;
 
   $("gombVissza").disabled = !!J.vj || utolsoEmberLepesHossz() === null;
   vjSavFrissit();
@@ -94,14 +94,13 @@ const lep = (lepes) => {
 // Ha gép következik, rövid szünet után (hogy a felület kirajzolódjon) lép.
 const gepIndit = () => {
   if (J.vj || J.allapot.vege) return;
-  const szint = J.gep[J.allapot.kovetkezo];
-  if (!szint) return;
+  if (!J.gep[J.allapot.kovetkezo]) return;
   const token = ++J.gepToken;
   J.gondolkodik = true;
   frissit();
   setTimeout(() => {
     if (token !== J.gepToken) return;
-    const lepes = gepLepes(szint, J.allapot);
+    const lepes = gepLepes(J.allapot);
     if (token !== J.gepToken) return;
     J.gondolkodik = false;
     lep(lepes);
@@ -234,7 +233,7 @@ const vjSavFrissit = () => {
   $("vjCsuszka").max = max;
   $("vjCsuszka").value = J.vj.poz;
   $("vjSzamlalo").textContent = `${J.vj.poz} / ${max}`;
-  $("vjLejatszas").textContent = J.vj.fut ? "⏸" : "▶";
+  $("vjLejatszas").innerHTML = ikon(J.vj.fut ? "pause" : "play", 16);
 };
 
 // ---------- ablakok ----------
@@ -243,8 +242,8 @@ const vegeMutat = () => {
   if (!J.allapot.vege || J.vj) return;
   const [x, y] = J.allapot.pont;
   const n = jatekosNevek();
-  $("vegeCim").textContent = x === y ? "Döntetlen!" : `${x > y ? n.p1 : n.p2} nyert! 🏆`;
-  $("vegeSzoveg").innerHTML = `<span class="j-p1">${n.p1}: <b>${x}</b></span> &nbsp;–&nbsp; <span class="j-p2">${n.p2}: <b>${y}</b></span>`;
+  $("vegeCim").textContent = x === y ? "Döntetlen" : `${x > y ? n.p1 : n.p2} nyert`;
+  $("vegeSzoveg").innerHTML = `<span class="vege-sor"><span class="potty p1"></span>${n.p1}<b>${x}</b></span><span class="vege-sor"><span class="potty p2"></span>${n.p2}<b>${y}</b></span>`;
   $("vegeAblak").showModal();
 };
 
@@ -311,7 +310,7 @@ const esemenyek = () => {
     }
   });
   $("tabla").addEventListener("mouseleave", () => {
-    $("infoSor").textContent = "Vigyd az egeret egy mezőre a részletekért.";
+    $("infoSor").textContent = "Vigyd az egeret egy mezőre a részletekért";
     if (J.hover) { J.hover = null; frissit(); }
   });
 
@@ -386,6 +385,7 @@ const esemenyek = () => {
 
 // ---------- indulás ----------
 
+ikonokBeillesztese();
 esemenyek();
 {
   const g = palyaGeneralas({ width: 12, height: 10, keszletMeret: 24, semlegesTornyok: 7, sziklak: 8 });
