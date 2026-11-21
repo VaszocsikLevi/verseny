@@ -1,12 +1,198 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tower Conquest – BitFaragók</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+  <header class="fejlec">
+    <div class="logo">
+      <span class="logo-ikon">🏰</span>
+      <div>
+        <h1>Tower Conquest</h1>
+        <p class="alcim">Bakonyi Bitfaragó Bajnokság · döntő</p>
+      </div>
+    </div>
+    <nav class="gombok">
+      <button id="gombUj" class="gomb fo">Új játék</button>
+      <button id="gombVissza" class="gomb" title="Ctrl+Z">↶ Visszavonás</button>
+      <button id="gombImport" class="gomb">Visszajátszás / betöltés</button>
+      <button id="gombExport" class="gomb">Mentés JSON</button>
+      <button id="gombSzabaly" class="gomb">Szabályok</button>
+    </nav>
+  </header>
+
+  <main class="fo-resz">
+    <section class="tabla-resz">
+      <div id="visszajatszoSav" class="visszajatszo rejtett">
+        <span class="vj-cimke">▶ Visszajátszás</span>
+        <button class="gomb kicsi" data-vj="elso" title="Elejére (Home)">⏮</button>
+        <button class="gomb kicsi" data-vj="elozo" title="Előző (←)">◀</button>
+        <button class="gomb kicsi" data-vj="lejatszas" id="vjLejatszas" title="Lejátszás (Szóköz)">▶</button>
+        <button class="gomb kicsi" data-vj="kovetkezo" title="Következő (→)">▶|</button>
+        <button class="gomb kicsi" data-vj="utolso" title="Végére (End)">⏭</button>
+        <input type="range" id="vjCsuszka" min="0" max="0" value="0">
+        <span id="vjSzamlalo" class="vj-szamlalo">0 / 0</span>
+        <select id="vjSebesseg" title="Sebesség">
+          <option value="1200">lassú</option>
+          <option value="600" selected>normál</option>
+          <option value="250">gyors</option>
+        </select>
+        <button class="gomb kicsi" data-vj="folytat" title="Innen folytatható játékként">Folytatás innen</button>
+        <button class="gomb kicsi" data-vj="kilep">Kilépés</button>
+      </div>
+
+      <div id="allapotSor" class="allapot-sor"></div>
+      <div class="tabla-keret">
+        <div id="tabla" class="tabla"></div>
+      </div>
+      <div id="infoSor" class="info-sor">Vigyd az egeret egy mezőre a részletekért.</div>
+    </section>
+
+    <aside class="oldalsav">
+      <div class="pontok">
+        <div class="jatekos-kartya p1" id="kartyaP1">
+          <div class="jk-nev"><span class="potty"></span><span id="nevP1">Kék</span></div>
+          <div class="jk-pont" id="pontP1">0</div>
+          <div class="jk-info" id="infoP1"></div>
+        </div>
+        <div class="jatekos-kartya p2" id="kartyaP2">
+          <div class="jk-nev"><span class="potty"></span><span id="nevP2">Narancs</span></div>
+          <div class="jk-pont" id="pontP2">0</div>
+          <div class="jk-info" id="infoP2"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-fej">
+          <h2>Közös készlet</h2>
+          <span id="keszletSzam" class="cimke"></span>
+        </div>
+        <div id="keszlet" class="keszlet"></div>
+        <p id="keszletSugo" class="sugo"></p>
+      </div>
+
+      <div class="panel naplo-panel">
+        <div class="panel-fej"><h2>Lépések</h2><span id="naploSzam" class="cimke"></span></div>
+        <ol id="naplo" class="naplo"></ol>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Új játék -->
+  <dialog id="ujJatekAblak" class="ablak">
+    <form method="dialog" id="ujJatekUrlap">
+      <h2>Új játék</h2>
+      <fieldset>
+        <legend>Játékosok</legend>
+        <div class="sor">
+          <label>Kék (kezd)
+            <select name="p1">
+              <option value="ember">Ember</option>
+              <option value="konnyu">Gép – könnyű</option>
+              <option value="nehez">Gép – nehéz</option>
+            </select>
+          </label>
+          <label>Narancs
+            <select name="p2">
+              <option value="ember">Ember</option>
+              <option value="konnyu">Gép – könnyű</option>
+              <option value="nehez">Gép – nehéz</option>
+            </select>
+          </label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Pálya</legend>
+        <div class="sor">
+          <label>Szélesség <input type="number" name="width" min="8" max="20" value="12"></label>
+          <label>Magasság <input type="number" name="height" min="8" max="20" value="10"></label>
+          <label>Készlet mérete <input type="number" name="keszlet" min="2" max="80" step="2" value="24"></label>
+        </div>
+        <div class="sor">
+          <label>Semleges tornyok <input type="number" name="tornyok" min="0" max="60" value="7"></label>
+          <label>Sziklák <input type="number" name="sziklak" min="0" max="60" value="8"></label>
+          <label>Seed (üres = véletlen) <input type="text" name="seed" placeholder="pl. 2026"></label>
+        </div>
+        <button type="button" class="gomb kicsi" id="veletlenMeret">🎲 Véletlen méret (8–20)</button>
+      </fieldset>
+      <div class="ablak-gombok">
+        <button value="megse" class="gomb">Mégse</button>
+        <button value="ok" class="gomb fo">Indítás</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Import / visszajátszás -->
+  <dialog id="importAblak" class="ablak szeles">
+    <form method="dialog">
+      <h2>Visszajátszás / pálya betöltése</h2>
+      <p class="sugo">Másold be egy lejátszott meccs JSON adatait (pl. a szerverről), vagy egy pályát és készletet
+        (<code>{"map": {...}, "pool": [...], "steps": [...]}</code>). Fájlt is választhatsz.</p>
+      <textarea id="importSzoveg" rows="12" spellcheck="false" placeholder='{"map":{"width":10,"height":10,"content":[]},"pool":[...],"steps":[...]}'></textarea>
+      <div class="sor">
+        <input type="file" id="importFajl" accept=".json,application/json,text/plain">
+      </div>
+      <p id="importHiba" class="hiba"></p>
+      <div class="ablak-gombok">
+        <button value="megse" class="gomb">Mégse</button>
+        <button type="button" class="gomb" id="importJatek">Játék indítása ezen a pályán</button>
+        <button type="button" class="gomb fo" id="importVisszajatszas">Visszajátszás</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Szabályok -->
+  <dialog id="szabalyAblak" class="ablak szeles">
+    <form method="dialog">
+      <h2>Szabályok röviden</h2>
+      <ul class="szabalyok">
+        <li>A játékosok felváltva választanak egy elemet a <b>közös készletből</b>, és lehelyezik / aktiválják egy mezőn. Ha a készlet elfogy, vége.</li>
+        <li><b>Torony (1–9)</b> és <b>Lovag (1–5)</b>: üres mezőre tehető, a lehelyezőé lesz.</li>
+        <li><b>Földcsuszamlás</b>: a cél és a 8 szomszéd közül az <i>üres</i> mezők sziklák lesznek.</li>
+        <li><b>Meteorit</b>: a célmező szikla lesz, az ott álló figura eltűnik.</li>
+        <li><b>Konvertálás</b>: egy torony vagy lovag a tiéd lesz (sziklára nem használható).</li>
+        <li>Pontozás: egy torony annyit ér, amilyen magas, <b>kivéve</b> ha mellette (8 irány) magasabb torony áll – akkor 0.</li>
+        <li>A torony mellett álló lovagok elfoglalják: a szomszédos lovagerők összege dönt, döntetlennél marad az eredeti tulajdonos. Semleges torony senkinek sem ad pontot.</li>
+      </ul>
+      <h3>Jelmagyarázat</h3>
+      <div class="jelmagyarazat">
+        <span><i class="minta pontoz"></i> pontot érő torony (+érték)</span>
+        <span><i class="minta blokk"></i> blokkolt torony (magasabb szomszéd)</span>
+        <span><i class="minta foglalt">⚔</i> lovagok által elfoglalt torony</span>
+      </div>
+      <h3>Irányítás</h3>
+      <ul class="szabalyok">
+        <li>Kattints egy készletelemre, majd egy kiemelt mezőre. Egér a mező felett: előnézet és pontváltozás.</li>
+        <li>Billentyűk: <kbd>Esc</kbd> kijelölés törlése, <kbd>Ctrl</kbd>+<kbd>Z</kbd> visszavonás, visszajátszásnál <kbd>←</kbd> <kbd>→</kbd> <kbd>Szóköz</kbd>.</li>
+      </ul>
+      <div class="ablak-gombok"><button class="gomb fo">Rendben</button></div>
+    </form>
+  </dialog>
+
+  <!-- Játék vége -->
+  <dialog id="vegeAblak" class="ablak">
+    <form method="dialog">
+      <h2 id="vegeCim">Vége</h2>
+      <p id="vegeSzoveg" class="vege-szoveg"></p>
+      <div class="ablak-gombok">
+        <button value="vj" class="gomb">Visszajátszás</button>
+        <button value="export" class="gomb">Mentés JSON</button>
+        <button value="uj" class="gomb fo">Új játék</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- A verseny során megírt és a szerveren ellenőrzött függvények -->
+  <script src="pontszamito.js"></script>
+  <script src="lepesszim.js"></script>
+  <script src="botok/bot6.js"></script>
+  <!-- A webes játék -->
+  <script src="js/allapot.js"></script>
+  <script src="js/gep.js"></script>
+  <script src="js/rajzolas.js"></script>
+  <script src="js/vezerles.js"></script>
 </body>
 </html>
