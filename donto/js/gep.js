@@ -1,4 +1,4 @@
-// Gépi játékos a webes játékhoz: a versenyre beküldött bot (botok/bot6.js → choose_action).
+// Gépi játékos a webes játékhoz: a versenyre beküldött bot (botok/apritoBot2.js → choose_action).
 
 // Egy lépés hatása az aktuális pályára, a simulate_game segítségével (az előnézethez).
 // A simulate_game mindig p1-gyel kezd, ezért p2 lépésénél egy üres (érvénytelen indexű) lépés előzi meg.
